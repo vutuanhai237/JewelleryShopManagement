@@ -1,9 +1,9 @@
 
 
-var React = require("react");
+import React from "react";
 
 
-var List = require("./List");
+import List from "./List";
 
 
 
@@ -16,4 +16,4 @@ function App() {
   );
 }
 
-module.exports = App;
+export default App;

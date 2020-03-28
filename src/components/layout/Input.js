@@ -1,5 +1,5 @@
-var React = require("react");
-var { connect } = require("react-redux");
+import React from  "react";
+import { connect } from "react-redux";
 
 class Input extends React.Component {
     constructor(props) {
@@ -37,4 +37,4 @@ class Input extends React.Component {
     }
 }
 
-module.exports = Input;
+export default Input;
