@@ -1,4 +1,4 @@
-const redux = require("redux");
+import { combineReducers, createStore, compose } from "redux";
 
 var mang_reducer = (state = ["F", "B", "E"], action) => {
     switch (action.type) {
@@ -20,12 +20,12 @@ var is_adding_reducer = (state = false, action) => {
 }
 
 
-var root_reducer = redux.combineReducers({
+var root_reducer = combineReducers({
     mang: mang_reducer,
     is_adding: is_adding_reducer
 });
 
-var store = redux.createStore(root_reducer, redux.compose(
+var store = createStore(root_reducer, compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
 store.subscribe(()=> {
@@ -39,4 +39,4 @@ store.dispatch({
 console.log(store.getState());
 
 
-module.exports = store;
+export default store;

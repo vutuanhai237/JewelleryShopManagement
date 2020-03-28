@@ -1,5 +1,5 @@
-var React = require("react");
-var {connect} = require("react-redux");
+import React from "react";
+import {connect} from "react-redux";
 class Note extends React.Component {
     deleteNote() {
       const { index, handleDeleteNote } = this.props;
@@ -15,4 +15,4 @@ class Note extends React.Component {
     }
   }
 
-  module.exports = Note;
+export default Note;
