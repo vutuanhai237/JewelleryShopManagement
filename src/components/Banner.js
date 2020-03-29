@@ -4,10 +4,10 @@ import { Button, Container, Jumbotron, Row, Col } from 'react-bootstrap';
 class Banner extends Component {
     render() {
         return (
-            <div>
-                <Jumbotron className="bg-light">
+            <div className="banner">
+                <Jumbotron className="bg-trans mb-0">
                     <Container>
-                        <Row>
+                        <Row className="pt-0 pb-5 py-md-5">
                             <Col md={4}>
                                 <h1>Mua vàng theo cách của bạn!</h1>
                                 <p>
@@ -22,6 +22,7 @@ class Banner extends Component {
                     </Container>
 
                 </Jumbotron>
+                <div className="model"></div>
             </div>
         );
     }

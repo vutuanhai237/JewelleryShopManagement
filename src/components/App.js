@@ -18,6 +18,12 @@ function App() {
         <Route exact path="/search">
           <Search/>
         </Route>
+        <Route exact path="/login">
+          <Search/>
+        </Route>
+        <Route exact path="/employee">
+          <Home/>
+        </Route>
       </Switch>
     </Router>
   );
