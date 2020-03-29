@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 var React = require("react");
 var ReactDOM = require("react-dom");
 var App = require("./components/layout/App");
@@ -10,6 +11,18 @@ ReactDOM.render(
       
       <App />
       
+=======
+import React, { StrictMode } from "react";
+import { render } from "react-dom";
+import App from "./components/layout/App";
+import { unregister } from "./serviceWorker";
+import { Provider } from "react-redux";
+import store from "./store/index";
+render(
+  <StrictMode>
+    <Provider store={store}>    
+      <App/>     
+>>>>>>> Stashed changes
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

@@ -15,7 +15,6 @@ class List extends React.Component {
         return (
             <div>
                 <Input handleAddNote={this.addNote.bind(this)}></Input>
-
                 {this.props.mang.map((e, i) => (
                     <Note handleDeleteNote={this.deleteNote.bind(this)} index={i} key={i}>
                         {e}
