@@ -3,14 +3,14 @@ import { render } from "react-dom";
 import App from "./components/layout/App";
 import { unregister } from "./serviceWorker";
 import { Provider } from "react-redux";
-import store from "./reducers/index";
-import './index.scss';
-render(
-  <StrictMode>
+import store from "./store/index";
+ReactDOM.render(
+  <React.StrictMode>
     <Provider store={store}>
+      
       <App />
     </Provider>
-  </StrictMode>,
+  </React.StrictMode>
   document.getElementById("root")
 );
 

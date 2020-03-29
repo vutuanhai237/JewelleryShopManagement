@@ -1,25 +1,20 @@
 import React from  "react";
 import { connect } from "react-redux";
-
+import * as  action from "../../actions/item_action"
 class Input extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { isAdding: false };
-        this.setState(this.state);
-    }
     addNote(e) {
         e.preventDefault();
-        this.props.handleAddNote(this.refs.txt.value);
-        this.refs.txt.value = "";
-        this.expand();
+        var {dispatch} = this.props;
+        dispatch(action.add_item(this.refs.txt.value));
+        dispatch(action.expanding());
     }
     expand() {
-        // eslint-disable-next-line react/no-direct-mutation-state
-        this.state.isAdding = !this.state.isAdding;
-        this.setState(this.state);
+        var {dispatch} = this.props;
+        dispatch(action.expanding());
+    
     }
     render() {
-        if (this.state.isAdding) {
+        if (this.props.is_adding) {
             return (
                 <div>
                     <form onSubmit={this.addNote.bind(this)}>
@@ -37,4 +32,8 @@ class Input extends React.Component {
     }
 }
 
-export default Input;
+
+export default connect(function (state) {
+    return {is_adding: state.is_adding};
+})(Input);
+
