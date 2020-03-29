@@ -4,12 +4,11 @@ import App from "./components/layout/App";
 import { unregister } from "./serviceWorker";
 import { Provider } from "react-redux";
 import store from "./reducers/index";
+import './index.scss';
 render(
   <StrictMode>
     <Provider store={store}>
-      
       <App />
-      
     </Provider>
   </StrictMode>,
   document.getElementById("root")
