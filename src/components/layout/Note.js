@@ -1,15 +1,6 @@
-<<<<<<< Updated upstream
-var React = require("react");
-var {connect} = require("react-redux");
-=======
 import React from "react";
 import { connect } from "react-redux";
 import * as action from "../../actions/item_action"
-
-
-
-
->>>>>>> Stashed changes
 class Note extends React.Component {
   deleteNote() {
     const { index, dispatch } = this.props;
@@ -25,10 +16,7 @@ class Note extends React.Component {
   }
 }
 
-<<<<<<< Updated upstream
-  module.exports = Note;
-=======
+
 export default connect(function (state) {
   return { mang: state.mang };
 })(Note);
->>>>>>> Stashed changes

@@ -1,7 +1,7 @@
-var React = require("react");
-var Input = require("./Input");
-var Note = require("./Note");
-var { connect } = require("react-redux");
+import React from "react";
+import Input from "./Input";
+import Note from "./Note";
+import { connect } from "react-redux";
 class List extends React.Component {
     deleteNote(index) {
         this.state.mang.splice(index, 1);
@@ -25,6 +25,6 @@ class List extends React.Component {
     }
 }
 
-module.exports = connect(function (state) {
+export default connect(function (state) {
     return { mang: state.mang };
 })(List);
