@@ -1,9 +1,10 @@
 import React from "react";
 import Home from "./layout/Home";
 import Search from "./layout/Search";
-import LoginForm from "../../containers/login/login_form"
-import RegisterForm from "../../containers/register/register_form"
-import Purchase from "../../components/bill/purchase_input"
+import LoginForm from "../containers/login/login_form";
+import RegisterForm from "../containers/register/register_form";
+import Purchase from "../components/bill/purchase_input";
+import List from "../components/layout/List";
 import {
   BrowserRouter as Router,
   Switch,

@@ -4,6 +4,7 @@ import App from "./components/App";
 import { unregister } from "./serviceWorker";
 import { Provider } from "react-redux";
 import store from "./store/index";
+import './index.scss';
 render(
   <StrictMode>
     <Provider store={store}>
