@@ -1,0 +1,35 @@
+$cat-nav-height: 100px;
+$cat-nav-border-color: #ddd;
+
+.cat-nav {
+    display: block;
+    z-index: 1;
+    margin-top: -$cat-nav-height /2;
+    height: $cat-nav-height;
+    background-color: white;
+    border-radius: $cat-nav-height /8;
+    table-layout: fixed;
+    box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.35);
+}
+
+.cat-nav .nav-item {
+    display: flex;
+    align-self: center;
+    max-height: 100%;
+    height: 100%;
+    border-left: 1px solid $cat-nav-border-color;
+}
+.cat-nav .nav-item a {
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+}
+
+.cat-nav .nav-item .cat-label {
+    width: fit-content;
+    margin: auto;
+}
+
+.cat-nav .nav-item:first-child {
+    border-left: none;
+}
