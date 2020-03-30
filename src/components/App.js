@@ -6,15 +6,14 @@ import RegisterForm from "../containers/register/register_form";
 import Purchase from "../components/bill/purchase_input";
 import List from "../components/layout/List";
 import {
-  BrowserRouter as Router,
   Switch,
-  Route
+  Route,
 } from 'react-router-dom';
 
 
 function App() {
   return (
-    <Router>
+    <div>
       <Switch>
         <Route exact path="/">
           <Home/>
@@ -23,7 +22,7 @@ function App() {
           <Search/>
         </Route>
         <Route exact path="/login">
-          <Search/>
+          <div>This is login page</div>
         </Route>
         <Route exact path="/employee">
           <Home/>
@@ -35,7 +34,7 @@ function App() {
 
       <Purchase />
       </div>
-    </Router>
+    </div>
   );
 }
 

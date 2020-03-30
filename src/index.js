@@ -5,10 +5,17 @@ import { unregister } from "./serviceWorker";
 import { Provider } from "react-redux";
 import store from "./store/index";
 import './index.scss';
+import {
+  BrowserRouter,
+  Route
+} from "react-router-dom";
+
 render(
   <StrictMode>
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <Route component={App} />
+      </BrowserRouter>
     </Provider>
   </StrictMode>,
   document.getElementById("root")
