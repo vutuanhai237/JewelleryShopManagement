@@ -3,8 +3,6 @@ import Home from "./layout/Home";
 import Search from "./layout/Search";
 import Login from "./layout/Login";
 import Register from "./layout/Register";
-
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,6 +21,7 @@ function App() {
           <Search/>
         </Route>
         <Route exact path="/login">
+
           <Login/>
         </Route>
         <Route exact path="/register">
@@ -35,6 +34,7 @@ function App() {
       <div className="App">
       </div>
     </Router>
+
   );
 }
 

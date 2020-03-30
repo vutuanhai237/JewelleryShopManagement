@@ -1,4 +1,54 @@
 @import "~bootstrap/scss/bootstrap";
+
+@import url('https://fonts.googleapis.com/css?family=Average&display=swap');
+@import "~bootstrap/scss/variables";
+
+
+.bg-trans {
+  background-color: transparents !important;
+}
+
+.jumbotron {
+  background: none
+}
+
+a {
+  color: black;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.btn {
+  border-radius: 12px;
+}
+
+.head {
+  display: block;
+  //position: relative;
+  background-image: url('./images/back.jpg');
+  background-size: auto;
+  z-index: 0;
+}
+
+.banner {
+  display: block;
+  position: relative;
+  z-index: 0;
+}
+
+.model {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 50%;
+  height: 100%;
+  background-size: cover;
+  background-image: url('./images/a.png');
+  z-index: -1;
+  content: '';
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -12,3 +62,5 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
