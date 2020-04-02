@@ -8,20 +8,27 @@ $cat-nav-border-color: #ddd;
     height: $cat-nav-height;
     background-color: white;
     border-radius: $cat-nav-height /8;
-    table-layout: fixed;
     box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.35);
+    overflow: hidden;
 }
 
 .cat-nav .nav-item {
-    display: flex;
-    align-self: center;
-    max-height: 100%;
-    height: 100%;
     border-left: 1px solid $cat-nav-border-color;
 }
-.cat-nav .nav-item a {
-    margin-top: auto;
-    margin-bottom: auto;
+
+.cat-nav .nav-item a.nav-link {
+    padding: unset;
+}
+
+.cat-nav .nav-item a.active {
+    border-bottom: #f98521 2px solid;
+}
+
+.cat-nav .nav-item:hover {
+    background-color: #ddd;
+}
+
+.cat-nav .nav-item a .cat-item {
     text-align: center;
 }
 

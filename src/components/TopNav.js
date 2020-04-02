@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Navbar, Form, Nav, FormControl, Button, Container, NavLink, InputGroup } from 'react-bootstrap';
 import './TopNav.scss';
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { menuItem } from './MenuNav';
-import {
-    Link,
-} from "react-router-dom";
+import iconLogo from '../images/logo.png';
+import { Link } from "react-router-dom";
 
 class TopNav extends Component {
     render() {
@@ -14,7 +13,7 @@ class TopNav extends Component {
             <div className="top-nav">
                 <Navbar className="bg-trans" expand="lg">
                     <Container>
-                        <Navbar.Brand><img src="https://img.icons8.com/ultraviolet/40/000000/jewelry.png" alt="logo" /></Navbar.Brand>
+                        <Navbar.Brand><img src={iconLogo} alt="logo" /></Navbar.Brand>
                         <Navbar.Brand className="brand-name mx-lg-3"><Link to="/">Vàng Store</Link></Navbar.Brand>
 
                         <Form inline className="d-none flex-grow-1 d-md-flex">
@@ -30,8 +29,10 @@ class TopNav extends Component {
 
                         <div className="d-flex">
                             <Navbar.Toggle variant="primary" className="d-block d-md-none" aria-controls="basic-navbar-nav" />
-                            <Link className="nav-link mx-lg-3 d-none d-md-block" to="/login">Login</Link>
-                            <Button variant="primary" className="d-none d-md-block">Liên hệ</Button>
+                            <Link className="nav-link mx-lg-3 d-none d-md-block" to="/login">Đăng nhập</Link>
+                            <Button variant="primary" className="d-none d-md-block">
+                                <FontAwesomeIcon icon={faPhoneAlt} /><span className="ml-2 text-uppercase">Liên hệ</span>
+                            </Button>
                         </div>
 
                         <Navbar.Collapse id="basic-navbar-nav" className="d-md-none flex-grow-0">
@@ -40,10 +41,12 @@ class TopNav extends Component {
                                     <ul className="list-unstyled">
                                         {
                                             menuItem.map(item => {
-                                                return <li className="text-uppercase"><NavLink>{item}</NavLink></li>
+                                                return <li key={item} className="text-uppercase"><NavLink>{item}</NavLink></li>
                                             })
                                         }
+                                        <li className="text-uppercase"><NavLink>Đăng nhập</NavLink></li>
                                     </ul>
+
                                 </Nav>
                                 <Form inline className="d-md-none">
                                     <div className="search-bar w-100">

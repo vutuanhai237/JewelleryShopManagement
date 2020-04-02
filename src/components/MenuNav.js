@@ -14,7 +14,7 @@ class MenuNav extends Component {
                         <ul className="list-inline list-unstyled">
                             {
                                 menuItem.map(item => {
-                                    return <li className="list-inline-item text-uppercase"><NavLink>{item}</NavLink></li>
+                                    return <li key={item} className="list-inline-item text-uppercase"><NavLink>{item}</NavLink></li>
                                 })
                             }
                         </ul>

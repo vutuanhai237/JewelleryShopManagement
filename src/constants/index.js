@@ -1,0 +1,3 @@
+export const HOME_CHANGE_CATEGORY = 'HOME_CHANGE_CATEGORY';
+//home: fetch_products
+export const HOME_FETCH_PRODUCT_SUCCESS = 'HOME_FETCH_PRODUCT_SUCCESS';

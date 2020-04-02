@@ -1,11 +1,16 @@
-import { createStore, compose } from "redux";
+import { createStore, compose, applyMiddleware } from "redux";
 import root_reducer from "../reducers/root_reducer"
-var store = createStore(root_reducer, compose(
-    window.devToolsExtension ? window.devToolsExtension() : f => f
-));
-store.subscribe(()=> {
+import thunk from 'redux-thunk';
+var store = createStore(
+    root_reducer,
+    
+    compose(applyMiddleware(thunk),
+        window.devToolsExtension ? window.devToolsExtension() : f => f)
+);
+store.subscribe(() => {
     var str = store.getState();
-    document.getElementById("detail").innerHTML = JSON.stringify(str);
+    console.log(str);
+    //document.getElementById("detail").innerHTML = JSON.stringify(str);
 })
 
 console.log(store.getState());
