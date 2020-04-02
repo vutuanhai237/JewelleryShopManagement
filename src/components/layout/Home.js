@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import TopNav from '../TopNav';
 import MenuNav from '../MenuNav';
-import Banner from '../Banner';
-import CatNav from '../CatNav';
+import Banner from '../home/Banner';
+
+import HomeContent from '../home/HomeContent';
 export default class Home extends Component {
     render() {
         return (
@@ -12,7 +13,7 @@ export default class Home extends Component {
                     <MenuNav />
                     <Banner />        
                 </div>
-                <CatNav />
+                <HomeContent/>
             </div>
         );
     }

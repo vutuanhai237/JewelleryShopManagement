@@ -1,6 +1,6 @@
 
 
-$top-search-bar-radius: 15px;
+$top-search-bar-radius: 20px;
 
 .top-nav .brand-name {
   font-size: x-large;
@@ -19,6 +19,7 @@ $top-search-bar-radius: 15px;
   border-right: none;
   padding: 20px;
   transition: none;
+  border-color: transparent;
 }
 
 .top-nav .search-bar input:focus,
@@ -55,6 +56,6 @@ $top-search-bar-radius: 15px;
   border-left: none;
   padding-left: 15px;
   padding-right: 15px;
-  border-color: #ced4da;
+  //border-color: #ced4da;
   transition: none;
 }

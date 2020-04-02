@@ -1,4 +1,5 @@
 import { combineReducers, createStore, compose } from "redux";
+import homeReducer from './homeReducer';
 
 var mang_reducer = (state = ["F", "B", "E"], action) => {
     switch (action.type) {
@@ -21,6 +22,7 @@ var is_adding_reducer = (state = false, action) => {
 
 
 var root_reducer = combineReducers({
+    home: homeReducer,
     mang: mang_reducer,
     is_adding: is_adding_reducer
 });
@@ -30,7 +32,7 @@ var store = createStore(root_reducer, compose(
 ));
 store.subscribe(()=> {
     var str = store.getState();
-    document.getElementById("detail").innerHTML = JSON.stringify(str);
+    //document.getElementById("detail").innerHTML = JSON.stringify(str);
 })
 store.dispatch({
     content: "DDDD",
