@@ -3,6 +3,7 @@ import Home from "./layout/Home";
 import Search from "./layout/Search";
 import Login from "./layout/Login";
 import Register from "./layout/Register";
+import Bill from "./layout/Bill";
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,14 +22,13 @@ function App() {
           <Search/>
         </Route>
         <Route exact path="/login">
-
           <Login/>
         </Route>
         <Route exact path="/register">
           <Register/>
         </Route>
-        <Route exact path="/employee">
-          <Home/>
+        <Route exact path="/create_bill">
+          <Bill/>
         </Route>
       </Switch>
       <div className="App">

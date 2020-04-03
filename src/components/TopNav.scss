@@ -8,6 +8,8 @@ $top-search-bar-radius: 20px;
   font-family: "Average", serif;
 }
 
+
+
 .top-nav .search-bar {
   border-radius: $top-search-bar-radius;
   background-color: white;
@@ -58,4 +60,8 @@ $top-search-bar-radius: 20px;
   padding-right: 15px;
   //border-color: #ced4da;
   transition: none;
+}
+
+p.body:hover {
+  opacity: 0.5;
 }
