@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import TopNav from '../TopNav';
 import MenuNav from '../MenuNav';
 import Banner from '../home/Banner';
-
 import HomeContent from '../home/HomeContent';
+import Footer from '../Footer';
 export default class Home extends Component {
     render() {
         return (
@@ -14,6 +14,7 @@ export default class Home extends Component {
                     <Banner />        
                 </div>
                 <HomeContent/>
+                <Footer/>
             </div>
         );
     }
