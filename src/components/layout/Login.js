@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TopNav from '../TopNav';
 import LoginForm from "../../containers/login/login_form"
-
+import Footer from '../Footer';
 export default class Login extends Component {
     render() {
         return (
@@ -12,6 +12,7 @@ export default class Login extends Component {
                 <div className="login_form">
                     <LoginForm/>
                 </div>
+                <Footer/>
             </div>
         );
     }

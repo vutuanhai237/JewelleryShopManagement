@@ -1,9 +1,10 @@
-.form {
+.login-form {
     width: 100%;
     max-width: 400px;
     padding: 30px 30px 30px 30px;
     margin:auto;
     margin-top: 50px;
+    margin-bottom: 50px;
     height: 100%;
     background: white;
     border-radius: 30px;
@@ -14,15 +15,20 @@
     padding: 30px 30px 30px 30px;
     margin:auto;
     margin-top: 50px;
+    margin-bottom: 50px;
     height: 100%;
     background: white;
     border-radius: 30px;
 }
-.email-input {
-    border-radius: 30px;
-}
 
-#login-fb{
-    margin: 0 auto;
-    text-align: center;
+.bill-form {
+    width: 100%;
+    max-width: 600px;
+    padding: 30px 30px 30px 30px;
+    margin:auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 100%;
+    background: white;
+    border-radius: 30px;
 }

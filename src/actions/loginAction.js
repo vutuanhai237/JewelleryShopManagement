@@ -1,7 +1,6 @@
 import {
     LOGIN,
     REMEMBER_LOGIN,
-    REGISTER,
 } from '../constants';
 export const login = (hash) => {
     return {
@@ -17,11 +16,6 @@ export const rememberLogin = (checked) => {
     };
 }
 
-export const register = (username, password, email, password_email, alias) => {
-    return {
-        type: REGISTER,
-        content: {username, password, email, password_email, alias}
-    };
-}
+
 
 
