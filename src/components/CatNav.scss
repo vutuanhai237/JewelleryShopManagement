@@ -1,10 +1,13 @@
 $cat-nav-height: 100px;
 $cat-nav-border-color: #ddd;
 
+.home .cat-nav {
+    margin-top: -$cat-nav-height /2;
+}
+
 .cat-nav {
     display: block;
     z-index: 1;
-    margin-top: -$cat-nav-height /2;
     height: $cat-nav-height;
     background-color: white;
     border-radius: $cat-nav-height /8;
