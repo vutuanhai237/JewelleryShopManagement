@@ -30,7 +30,7 @@ CatNav.propTypes = {
         PropTypes.shape({
             id: PropTypes.number.isRequired,//key id
             img: PropTypes.img,//image url
-            label: PropTypes.element.isRequired,//label
+            label: PropTypes.string.isRequired,//label
             onClick: PropTypes.func,//onClick function. ex: () => foo()
             href: PropTypes.string,//url
             active: PropTypes.bool,//true if the item is selected
