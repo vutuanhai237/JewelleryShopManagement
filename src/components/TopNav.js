@@ -1,20 +1,18 @@
 import React, { Component } from "react";
 import {
   Navbar,
-  Form,
   Nav,
-  FormControl,
   Button,
   Container,
   NavLink,
-  InputGroup
 } from "react-bootstrap";
 import "./TopNav.scss";
-import { faSearch, faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
+import { faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { menuItem } from "./MenuNav";
 import iconLogo from "../images/logo.png";
 import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 class TopNav extends Component {
   render() {
@@ -29,21 +27,7 @@ class TopNav extends Component {
               <Link to="/">Vàng Store</Link>
             </Navbar.Brand>
 
-            <Form inline className="d-none flex-grow-1 d-md-flex">
-              <div className="search-bar w-100 mx-lg-5">
-                <InputGroup>
-                  <FormControl
-                    type="text"
-                    placeholder="Bạn muốn mặt hàng nào?"
-                  />
-                  <div className="input-group-append">
-                    <Button variant="light" type="button">
-                      <FontAwesomeIcon icon={faSearch} />
-                    </Button>
-                  </div>
-                </InputGroup>
-              </div>
-            </Form>
+            <SearchBar noBorder placeholder='Bạn muốn mặt hàng nào' paramName='keyword' action='/search' className='d-none flex-grow-1 d-md-flex mx-lg-5' />
 
             <div className="d-flex">
               <Navbar.Toggle
@@ -79,21 +63,8 @@ class TopNav extends Component {
                     </li>
                   </ul>
                 </Nav>
-                <Form inline className="d-md-none">
-                  <div className="search-bar w-100">
-                    <InputGroup>
-                      <FormControl
-                        type="text"
-                        placeholder="Bạn muốn mặt hàng nào?"
-                      />
-                      <div className="input-group-append">
-                        <Button variant="light" type="button">
-                          <FontAwesomeIcon icon={faSearch} />
-                        </Button>
-                      </div>
-                    </InputGroup>
-                  </div>
-                </Form>
+                <SearchBar noBorder placeholder='Bạn muốn mặt hàng nào' paramName='keyword' action='/search' className='d-md-none' />
+
               </div>
             </Navbar.Collapse>
           </Container>

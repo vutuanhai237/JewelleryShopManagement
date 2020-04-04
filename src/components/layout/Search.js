@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import TopNav from '../TopNav';
-import HomeCatNav from '../../containers/home/HomeCatNav';
+import { Container } from 'react-bootstrap';
 
 class Search extends Component {
     render() {
         return (
-            <div>
+            <>
                 <TopNav />
-            </div>
+                <Container>
+                </Container>
+
+            </>
         );
     }
 }
