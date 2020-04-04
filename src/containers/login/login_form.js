@@ -14,7 +14,7 @@ class LoginForm extends React.Component {
     return (
       <div>
         <div className="d-flex justify-content-center">
-          <Form className="register-form">
+          <Form className="login-form">
             <h4 className="text-center h4">Đăng nhập</h4>
             <br />
             {/* Mail */}

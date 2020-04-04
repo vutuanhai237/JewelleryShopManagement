@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Container, NavLink} from 'react-bootstrap';
+import { Navbar, Container, NavLink } from 'react-bootstrap';
 import './TopNav.scss';
 
 
