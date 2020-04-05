@@ -14,9 +14,6 @@ import daquy2 from '../images/daquy2.jpg';
 import daquy3 from '../images/daquy3.jpg';
 import daquy4 from '../images/daquy4.jpg';
 
-
-
-
 const fakeProducts = [
     {
         catId: 0,
@@ -106,3 +103,4 @@ export default function fetchHomeProducts() {
         return fakeProducts;
     }
 }
+
