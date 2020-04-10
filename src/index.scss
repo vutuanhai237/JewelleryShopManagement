@@ -66,6 +66,27 @@ a {
   font-weight: 700;
 }
 
+.btn-circle.btn-lg {
+  width: 40px;
+  height: 40px;
+  padding: 2px 2px;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1.7;
+  border-width: 2px;
+  border-color: #000;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.42857;
+}
+
 h1 {
   font-weight: 600;
 }
