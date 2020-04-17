@@ -8,36 +8,41 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 class SearchResultItem extends Component {
+
+
     render() {
+
+        const { item } = this.props;
+
         return (
             <>
-                <div className="py-3 mx-lg-5">
+                <div className="py-2 py-md-1 mx-lg-5">
                     <Card>
                         <Row>
                             <Col md={4} className="d-flex justify-content-center">
-                                <Image src={daquy4} />
+                                <Image src={item.anh_dai_dien} />
                             </Col>
                             <Col md={6} className="px-3">
                                 <Card.Body className="px-3">
-                                    <Card.Title><a href="#!">Dây chuyền cao cấp chất lượng hàn xẻng</a></Card.Title>
+                                    <Card.Title><a href="#!">{item.ten_sp}</a></Card.Title>
                                     <Row>
                                         <Col md={6}>
-                                            <strong>Giá: 100000đ</strong>
+                                            <strong>Giá: {item.gia_ban} đ</strong>
                                         </Col>
                                         <Col md={6}>
-                                            <div>Giá gia công: 100000đ</div>
+                                            <div>Loại sản phẩm: {item.loai_sp}</div>
                                         </Col>
                                     </Row>
                                     <Row className="mb-2 mt-1">
                                         <Col md={6}>
-                                            <div>Tiêu chuẩn: SJC</div>
+                                            <div>Tiêu chuẩn: {item.tieu_chuan ?? 'N/A'}</div>
                                         </Col>
                                         <Col md={6}>
-                                            <div>Khối lượng: 9kg</div>
+                                            <div>Khối lượng: {item.khoi_luong} gram</div>
                                         </Col>
                                     </Row>
                                     <Card.Text>
-                                        Mô tả sản phẩm: Mặt hàng bán chạy nhất Đông Nam Á, cam kết đúng tiêu chuẩn
+                                        Mô tả sản phẩm: {item.ghi_chu ?? 'N/A'}
                                     </Card.Text>
                                 </Card.Body>
                             </Col>
@@ -53,7 +58,7 @@ class SearchResultItem extends Component {
 }
 
 SearchResultItem.propTypes = {
-
-                };
+    item: PropTypes.object,
+ };
 
 export default SearchResultItem;
