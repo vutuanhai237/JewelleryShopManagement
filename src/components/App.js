@@ -7,11 +7,18 @@ import Employee from "./layout/Employee";
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  useLocation,
 } from 'react-router-dom';
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 
 function App() {
+  let query = useQuery();
+
   return (
     <Router>
       <Switch>
@@ -19,7 +26,7 @@ function App() {
           <Home/>
         </Route>
         <Route exact path="/search">
-          <Search/>
+          <Search keyword={query.get('keyword')}/>
         </Route>
         <Route exact path="/login">
           <Login/>

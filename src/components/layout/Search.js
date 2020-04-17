@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import TopNav from '../TopNav';
 import { Container } from 'react-bootstrap';
-import SearchResult from '../search/SearchResult';
+import SearchResult from '../search/SearchResultsList';
+import SearchResultContent from '../../containers/search/SearchResultContent';
+import PropTypes from 'prop-types';
 
 class Search extends Component {
     render() {
@@ -9,11 +11,15 @@ class Search extends Component {
             <>
                 <TopNav />
                 <Container>
-                    <SearchResult/>
+                    <SearchResultContent keyword={this.props.keyword} />
                 </Container>
             </>
         );
     }
+}
+
+Search.propTypes = {
+    keyword: PropTypes.string,
 }
 
 export default Search;
