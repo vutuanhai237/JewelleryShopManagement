@@ -7,11 +7,8 @@ var store = createStore(
         window.devToolsExtension ? window.devToolsExtension() : f => f)
 );
 store.subscribe(() => {
-    var str = store.getState();
-    console.log(str);
-    //document.getElementById("detail").innerHTML = JSON.stringify(str);
+    
 })
 
-console.log(store.getState());
 
 export default store;

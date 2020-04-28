@@ -8,11 +8,7 @@ class Input extends React.Component {
         dispatch(action.add_item(this.refs.txt.value));
         dispatch(action.expanding());
     }
-    expand() {
-        var {dispatch} = this.props;
-        dispatch(action.expanding());
-    
-    }
+
     render() {
         if (this.props.is_adding) {
             return (

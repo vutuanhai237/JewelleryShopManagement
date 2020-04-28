@@ -1,84 +1,91 @@
 .delivery-form {
-    width: 100%;
-    height: 100%;
-    max-width: 710px;
-    max-height: 550px;
-    padding: 30px 30px 10px 30px;
-    margin: auto;
-    margin-top: 30px;
-    background: white;
+  width: 100%;
+  height: 100%;
+  max-width: 710px;
+  max-height: 550px;
+  padding: 30px 30px 10px 30px;
+  margin: auto;
+  margin-top: 30px;
+  background: white;
 
-    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.35);
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.35);
 }
 
-
+.delivery-form .date-time th, td{
+  padding: 10px 10px 10px 10px;
+  margin: 10px 10px 10px 10px;
+}
 
 
 .customer-form .row {
-    padding: 5px 0px 5px 10px;    
+  padding: 5px 0px 5px 10px;
 }
 
 .customer-form .col {
-    padding: 0px 0px 0px 0px;    
+  padding: 0px 0px 0px 0px;
 }
 .customer-form .note {
-
-    padding: 10px 10px 10px 10px;    
+  padding: 10px 10px 10px 10px;
 }
-
-
 
 .customer-form {
-    width: 100%;
-    height: 100%;
-    max-width: 350px;
-    max-height: 350px;
-    padding: 30px 30px 10px 30px;    
-    margin: auto;
-    margin-top: 30px;
-    background: white;
-    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.35);
+  width: 100%;
+  height: 100%;
+  max-width: 350px;
+  max-height: 350px;
+  padding: 30px 30px 10px 30px;
+  margin: auto;
+  margin-top: 30px;
+  background: white;
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.35);
 }
-
-
 
 .purchase-form {
-    width: 100%;
-    height: 100%;
-    max-width: 420px;
-    max-height: 618px;
-    padding: 30px 30px 10px 30px;    
-    margin: auto;
-    margin-top: 30px;
-    background: white;
-    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.35);
+  width: 100%;
+  height: 100%;
+  max-width: 420px;
+  max-height: 618px;
+  padding: 30px 30px 10px 30px;
+  margin: auto;
+  margin-top: 30px;
+  background: white;
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.35);
 }
-
+.purchase-form .full {
+  height: 100%
+}
 .purchase-form .row {
-    padding: 10px 0px 10px 0px;    
+  padding: 10px 0px 10px 0px;
 }
 
 .purchase-form .col {
-    padding: 0px 0px 0px 0px;    
+  padding: 0px 0px 0px 0px;
 }
 
-
-div .item-info-list th, td {
-    padding: 20px 20px 20px 20px;
+div .item-info-list th td {
+  padding: 20px 20px 20px 20px;
 }
 
 div .item-info-list tr:hover {
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
-div .item-info-list td {
-
+.item-info td {
+  padding: 0px 0px 0px 0px;
 }
 
 div .item-info-list {
-    margin: auto;
-    margin-top: 30px;
-    
-    margin-right: 30px;
-    margin-left: 30px;
+  margin: auto;
+  margin-top: 30px;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+
+.item-info #btn-delete {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.42857;
 }

@@ -1,18 +1,35 @@
 import React from "react";
+import { Tab, Tabs, Row, Form, FormControl, DropdownButton, Dropdown } from "react-bootstrap";
+import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
-import { Tab, Tabs, Row, Col, Form, InputGroup, FormControl } from "react-bootstrap";
-import SearchBar from "../../components/SearchBar";
 import "./form.scss";
 import "../SearchBar.scss"
 class CustomerForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {customer: []};
+        this.setState(this.state);
+    }
+    setCustomerCurrent(evt) {
+        this.props.setCustomerCurrent(evt);
+        this.forceUpdate();
+    }
     render() {
+        const {customerList, customerCurrent} = this.props;
         return (
             <div>
                 <Form className="pt-2 customer-form">
                     <Tabs defaultActiveKey="customer" id="uncontrolled-tab-example">
                         <Tab eventKey="customer" title="Khách hàng">
                             <Row className="pt-3">
-                                <SearchBar className="search-bar"></SearchBar>
+                            <DropdownButton onSelect={(evt) => this.setCustomerCurrent(evt)} id="dropdown-item-button" title="Chọn khách hàng">
+                                {
+                                    customerList.map((item) =>
+                                        <Dropdown.Item eventKey={item.customerID}>{item.name}</Dropdown.Item>
+
+                                    )
+                                }
+                            </DropdownButton>
                             </Row>
 
                             <Row>
@@ -20,7 +37,7 @@ class CustomerForm extends React.Component {
                                     Tên
                                 </Form.Label>
                                 <Form.Label className="text-right" column lg="7" xs="7">
-                                    Nguyễn Văn A
+                                    {customerCurrent.name}
                                 </Form.Label>
                             </Row>
 
@@ -29,7 +46,7 @@ class CustomerForm extends React.Component {
                                     SĐT
                                 </Form.Label>
                                 <Form.Label className="text-right" column lg="7" xs="7">
-                                    01234567
+                                    {customerCurrent.number}
                                 </Form.Label>
                             </Row>
 
@@ -38,7 +55,7 @@ class CustomerForm extends React.Component {
                                     Địa chỉ
                                 </Form.Label>
                                 <Form.Label className="text-right" column lg="7" xs="7">
-                                    Tân Phú
+                                    {customerCurrent.address}
                                 </Form.Label>
                             </Row>
                         </Tab>
@@ -56,4 +73,17 @@ class CustomerForm extends React.Component {
     }
 }
 
-export default CustomerForm;
+const mapStatetoProps = (state) => {
+    return {
+        customerList: state.employee.customerList,
+        customerCurrent: state.employee.customerCurrent,
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCustomerCurrent: (item) => dispatch({ type: "EMPLOYEESETCUSTOMERTEMPTLIST", customerID: item})
+    }
+}
+
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(CustomerForm));

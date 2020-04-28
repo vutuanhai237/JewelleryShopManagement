@@ -31,14 +31,11 @@ var store = createStore(root_reducer, compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
 store.subscribe(()=> {
-    var str = store.getState();
     //document.getElementById("detail").innerHTML = JSON.stringify(str);
 })
 store.dispatch({
     content: "DDDD",
     type: "add_item"
 });
-console.log(store.getState());
-
 
 export default store;

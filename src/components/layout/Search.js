@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import TopNav from '../TopNav';
 import { Container } from 'react-bootstrap';
-import SearchResult from '../search/SearchResultsList';
 import SearchResultContent from '../../containers/search/SearchResultContent';
 import PropTypes from 'prop-types';
 
 class Search extends Component {
     render() {
         return (
-            <>
+            <div>
                 <TopNav />
                 <Container>
                     <SearchResultContent keyword={this.props.keyword} />
                 </Container>
-            </>
+            </div>
         );
     }
 }

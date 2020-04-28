@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Container, Card, Row, Col, Image, Button } from 'react-bootstrap';
-import daquy4 from '../../images/daquy4.jpg';
+import { Card, Row, Col, Image, Button } from 'react-bootstrap';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

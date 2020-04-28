@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Form, Button, Col, InputGroup } from "react-bootstrap";
+import { Form, Button, Col } from "react-bootstrap";
 import "../form.scss";
 
 class RegisterForm extends React.Component {
