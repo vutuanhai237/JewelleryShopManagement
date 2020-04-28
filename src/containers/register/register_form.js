@@ -1,20 +1,81 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Form, Button, Col } from "react-bootstrap";
+import { Form, Button, Col, Modal } from "react-bootstrap";
 import "../form.scss";
 
 class RegisterForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            modalShow: false,
+            isRegisterSuccess: false,
+        };
+    }
+    register() {
+        if (this.refs.email.value != "haimeohung@gmail.com") {
+            this.setState({
+                isRegisterSuccess: true,
+                modalShow: true,
+            });
+        }
+        else {
+            this.setState({
+                isRegisterSuccess: false,
+                modalShow: true,
+            });
+        }
+        this.forceUpdate();
 
+    }
+    handleClose() {
+        this.setState({
+            modalShow: false,
+        });
+    }
     render() {
         return (
             <div>
+                <Modal
+                    centered
+                    show={this.state.modalShow}
+                    onHide={this.handleClose.bind(this)}
+                    animation={false}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title contained-modal-title-vcenter>Thông báo</Modal.Title>
+                    </Modal.Header>
+                    {(() => {
+
+                        if (this.state.isRegisterSuccess) {
+                            return <div>
+                                <Modal.Body>Đăng ký thành công</Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="success" href="/login" onClick={this.handleClose.bind(this)}>
+                                        Đồng ý
+                                    </Button>
+                                </Modal.Footer>
+                            </div>
+                        } else {
+                            return <div>
+                                <Modal.Body>Đăng ký thất bại</Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="danger" onClick={this.handleClose.bind(this)}>
+                                        Đồng ý
+                                    </Button>
+                                </Modal.Footer>
+                            </div>
+                        }
+                    })()}
+
+
+                </Modal>
                 <div className="d-flex justify-content-center">
                     <Form className="register-form">
                         <h4 className="text-center h4">Đăng ký</h4>
                         <br />
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Tên đăng nhập</Form.Label>
-                            <Form.Control type="email" placeholder="Ví dụ: abc@gmail.com" />
+                            <Form.Control ref="email" type="email" placeholder="Ví dụ: abc@gmail.com" />
 
                         </Form.Group>
 
@@ -80,7 +141,7 @@ class RegisterForm extends React.Component {
 
                         </Form.Group>
                         <hr></hr>
-                        <Button className="btn-lg btn-block" type="submit">
+                        <Button className="btn-lg btn-block" onClick={this.register.bind(this)}>
                             Đăng ký
                         </Button>
                     </Form>

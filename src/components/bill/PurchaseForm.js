@@ -1,5 +1,5 @@
 import React from "react";
-import { Tab, Tabs, Row, Col, Form, Button, InputGroup, ButtonGroup, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Tab, Tabs, Row, Col, Form, Button, InputGroup, ButtonGroup, OverlayTrigger, Tooltip, Modal } from "react-bootstrap";
 import "./form.scss";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
@@ -12,6 +12,7 @@ class PurchaseForm extends React.Component {
             isDuTien: false,
             TongTien: 0,
             TienThoi: 0,
+            modalShow: false,
         };
         this.setState(this.state);
         function myTimer() {
@@ -26,10 +27,13 @@ class PurchaseForm extends React.Component {
     ThanhToan() {
 
         this.setState({
-            isThanhTien: true
+            isThanhTien: true,
+            modalShow: true,
         });
 
     }
+
+
     ChinhSua() {
         this.setState({
             isThanhTien: true
@@ -87,10 +91,27 @@ class PurchaseForm extends React.Component {
         this.props.disableItemList(true);
         this.forceUpdate();
     }
-
+    handleClose() {
+        this.setState({
+            modalShow: false,
+        })
+        window.location.reload();
+    }
     render() {
         return (
             <div>
+                <Modal centered show={this.state.modalShow} onHide={this.handleClose.bind(this)} animation={false}>
+                    <Modal.Header closeButton>
+                        <Modal.Title contained-modal-title-vcenter>Thông báo</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Thêm hóa đơn mua hàng thành công</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="success" onClick={this.handleClose.bind(this)}>
+                            Đồng ý
+                        </Button>                  
+                    </Modal.Footer>
+                </Modal>
+
                 <Form className="pt-2 purchase-form">
                     <Tabs defaultActiveKey="purchase" id="uncontrolled-tab-example">
                         <Tab eventKey="purchase" title="Thanh toán">
@@ -221,7 +242,7 @@ const mapStatetoProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
 
-        disableItemList: (item) => dispatch({ type: "EMPLOYEEDISABLEITEMLIST", item: item})
+        disableItemList: (item) => dispatch({ type: "EMPLOYEEDISABLEITEMLIST", item: item })
     }
 }
 
