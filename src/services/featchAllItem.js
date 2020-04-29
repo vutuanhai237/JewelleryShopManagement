@@ -4,7 +4,7 @@ import { HOST, PORT } from '../constants';
 
 export default function fetchHomeProducts(ten_sp) {
     return dispatch => {
-        axios.get(`http://${HOST}:${PORT}/sanpham`, {
+        axios.get(`https://${HOST}:${PORT}/sanpham`, {
             params: {
                 ten_sp: ten_sp,
                 loai_sp: 'Dây chuyền',
