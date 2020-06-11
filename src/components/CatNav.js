@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Nav, Container } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import CatNavItem from './CatNavItem';
 
-class CatNav extends Component {
-
-    render() {
-        const { catItems } = this.props;
-        return (
+const CatNav = (props) => {
+    const { catItems, className } = props;
+    return (
+        <div className={className}>
             <Container className="d-flex justify-content-center">
                 <Nav className="cat-nav w-100" activeKey="/home">
                     {
@@ -20,8 +19,8 @@ class CatNav extends Component {
 
                 </Nav>
             </Container>
-        );
-    }
+        </div>
+    );
 }
 
 
@@ -36,6 +35,7 @@ CatNav.propTypes = {
             active: PropTypes.bool,//true if the item is selected
         })
     ),
+    className: PropTypes.string,
 }
 
 

@@ -10,6 +10,7 @@ import {
   Route,
   useLocation,
 } from 'react-router-dom';
+import Warehouse from "./layout/Warehouse";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -37,6 +38,7 @@ function App() {
         <Route exact path="/employee">
           <Employee/>
         </Route>
+        <Route path="/warehouse" component={Warehouse}/>
       </Switch>
       <div className="App">
       </div>

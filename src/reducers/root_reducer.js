@@ -2,12 +2,14 @@ import { combineReducers } from "redux";
 import homeReducer from './homeReducer';
 import employeeReducer from './employeeReducer';
 import searchReducer from './searchReducer';
+import productReducer from "./productReducer";
 
-var root_reducer = combineReducers({
+var rootReducer = combineReducers({
     home: homeReducer,
     employee: employeeReducer,
     search: searchReducer,
+    product: productReducer,
 });
 
 
-export default root_reducer;
+export default rootReducer;
