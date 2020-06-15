@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Image, ListGroup, ListGroupItem} from "react-bootstrap";
+import { Form, Image, ListGroup, ListGroupItem, Button} from "react-bootstrap";
 
 const ProductDetail = (props) => {
     if (!props.item)
@@ -52,6 +52,7 @@ const ProductDetail = (props) => {
                         <span className="font-weight-bold">{khoi_luong}</span>
                     </ListGroupItem>
                 </ListGroup>
+                <Button>Sua san pham</Button>
             </div>
         </div >
     );

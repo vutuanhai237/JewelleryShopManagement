@@ -1,26 +1,26 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
-import ProductListItem from './ProductListItem';
+import EmployeeListItem from './EmployeeListItem';
 import PropTypes from 'prop-types';
 
-const ProductList = (props) => {
+const EmployeeList = (props) => {
     const { data, handleDelete, onSelectItem } = props;
     return (
         <div className="item-info-list">
             <Table responsive>
                 <thead>
                     <tr>
-                        <th>Mã sản phẩm</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Nhà cung cấp</th>
+                        <th>Họ tên</th>
+                        <th>Ngày sinh</th>
+                        <th>Số điện thoại</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         data.map(item => {
-                            return <ProductListItem
-                                key={item.idsp}
+                            return <EmployeeListItem
+                                key={item.id}
                                 handleDelete={() => handleDelete(item)}
                                 item={item}
                                 onSelectItem={() => onSelectItem(item)}
@@ -31,22 +31,22 @@ const ProductList = (props) => {
             </Table>
             {
                 data.length < 1 &&
-                <p className="text-center">Không tìm thấy sản phẩm</p>
+                <p className="text-center">Không tìm thấy nhân viên</p>
             }
         </div >
     );
 }
 
-ProductList.defaultProps = {
+EmployeeList.defaultProps = {
     data: [],
     loading: true,
     onSelectItem: () => { }
 }
 
-ProductList.propTypes = {
+EmployeeList.propTypes = {
     handleDelete: PropTypes.func,
     data: PropTypes.array.isRequired,
     onSelectItem: PropTypes.func,
 }
 
-export default ProductList;
+export default EmployeeList;

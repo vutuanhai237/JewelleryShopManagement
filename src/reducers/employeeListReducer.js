@@ -1,40 +1,40 @@
 import {
-    PRODUCTS_FETCH_LIST_LOADING,
-    PRODUCTS_FETCH_LIST_SUCCESS,
-    PRODUCTS_CHANGE_SELECTED_PRODUCT,
-    PRODUCTS_LIST_CHANGED,
+    EMPLOYEES_FETCH_LIST_LOADING,
+    EMPLOYEES_FETCH_LIST_SUCCESS,
+    EMPLOYEES_CHANGE_SELECTED_EMPLOYEE,
+    EMPLOYEES_LIST_CHANGED,
 } from '../constants';
 
 const initialState = {
     loading: true,
-    products: [],
+    employees: [],
     selected: null,
     count: 0,
     changed: false,
 }
 
-function productReducer(state = initialState, action) {
+function employeeReducer(state = initialState, action) {
     switch (action.type) {
-        case PRODUCTS_FETCH_LIST_LOADING:
+        case EMPLOYEES_FETCH_LIST_LOADING:
             return {
                 ...state,
                 loading: true,
                 changed: false,
             }
-        case PRODUCTS_FETCH_LIST_SUCCESS:
+        case EMPLOYEES_FETCH_LIST_SUCCESS:
             return {
                 ...state,
-                products: action.payload.products,
+                employees: action.payload.employees,
                 count: action.payload.count,
                 loading: false,
                 changed: false,
             }
-        case PRODUCTS_CHANGE_SELECTED_PRODUCT:
+        case EMPLOYEES_CHANGE_SELECTED_EMPLOYEE:
             return {
                 ...state,
                 selected: action.payload,
             }
-        case PRODUCTS_LIST_CHANGED:
+        case EMPLOYEES_LIST_CHANGED:
             return {
                 ...state,
                 changed: true,
@@ -44,4 +44,4 @@ function productReducer(state = initialState, action) {
     }
 }
 
-export default productReducer;
+export default employeeReducer;

@@ -3,45 +3,45 @@ import { Form, Col, Spinner, Row, FormControl, Button } from "react-bootstrap";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import { changeSelectedProduct } from '../../actions/productAction';
-import { fetchProducts, addProduct, deleteProduct } from '../../services/productApi';
-import ProductList from "../../components/product-list/ProductList";
-import ProductDetail from "../../components/product-list/ProductDetail";
+import { changeSelectedEmployee } from '../../actions/employeeListAction';
+import { fetchEmployees } from '../../services/employeeApi';
+import EmployeeList from "../../components/employee-list/EmployeeList";
+import EmployeeDetail from "../../components/employee-list/EmployeeDetail";
 import Pagination from "../../components/Pagination";
-import AddProductPopup from "../../components/product-list/AddProductPopup";
+//import AddEmployeePopup from "../../components/employee-list/AddEmployeePopup";
 
 const ITEMS_PER_PAGE = 5;
 
 function createFilter({ search, page, itemPerPage }) {
     return {
-        ten_sp: search ?? '',
+        ten_nv: search ?? '',
         loai_sp: '',
         from: ((page ?? 1) - 1) * itemPerPage,
-        so_luong: itemPerPage,
+        count: itemPerPage,
     }
 }
 
-class Products extends React.Component {
+class Employees extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             ...this.state,
             showAddPopup: false,
         }
-        this.showAddProductPopup = this.showAddProductPopup.bind(this);
+        this.showAddEmployeePopup = this.showAddEmployeePopup.bind(this);
     }
 
     componentDidMount() {
         console.log('mo');
         const { search, page } = this.props;
-        this.props.fetchProducts(createFilter({
+        this.props.fetchEmployees(createFilter({
             search,
             page,
             itemPerPage: ITEMS_PER_PAGE
         }));
     }
 
-    showAddProductPopup(v) {
+    showAddEmployeePopup(v) {
         return this.setState({
             showAddPopup: v
         })
@@ -49,15 +49,15 @@ class Products extends React.Component {
 
     render() {
         const {
-            products,
+            employees,
             loading,
             selected,
-            changeSelectedProduct,
+            changeSelectedEmployee,
             page,
             history,
             search,
-            addProduct,
-            deleteProduct,
+            addEmployee,
+            deleteEmployee,
             count,
             changed
         } = this.props;
@@ -70,7 +70,7 @@ class Products extends React.Component {
 
         if(changed) {
             history.push({
-                pathname: "/warehouse/product-list",
+                pathname: "/people/employee-list",
                 search: search ? `?q=${search}&page=1` : `?page=1`,
             })
         }
@@ -81,46 +81,46 @@ class Products extends React.Component {
                     {
                         loading ?
                             <div className="d-flex justify-content-center w-100">
-                                <Spinner animation="grow" variant="danger" className="d-flexmy-2" />
+                                <Spinner animation="grow" variant="danger" className="d-flex my-2" />
                             </div>
                             :
                             <>
                                 <Row>
                                     <Col sm={12} md={4}>
-                                        <Form method="GET" action="/warehouse/product-list">
-                                            <FormControl type="text" name="q" placeholder="Tìm kiếm sản phẩm..." className="ml-md-4" defaultValue={search} />
+                                        <Form method="GET" action="/people/employee-list">
+                                            <FormControl type="text" name="q" placeholder="Tìm kiếm theo tên..." className="ml-md-4" defaultValue={search} />
                                         </Form>
                                     </Col>
                                     <Col sm={12} md={8} className="d-flex">
-                                        <Button className="ml-auto" variant="primary" onClick={() => this.showAddProductPopup(true)}>
-                                            Add Product
+                                        <Button className="ml-auto" variant="primary" onClick={() => this.showAddEmployeePopup(true)}>
+                                            + Thêm nhân viên
                                         </Button>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col sm={8} xs={12}>
-                                        <ProductList data={products} onSelectItem={(item) => changeSelectedProduct(item)} handleDelete={(item) => deleteProduct(item.idsp, filter)} />
+                                        <EmployeeList data={employees} onSelectItem={(item) => changeSelectedEmployee(item)} handleDelete={(item) => deleteEmployee(item.idsp, filter)} />
                                         <Pagination max={parseInt(Math.ceil(count / ITEMS_PER_PAGE))} current={page ? parseInt(page) : undefined} onChange={(p) => {
                                             return history.push({
-                                                pathname: "/warehouse/product-list",
+                                                pathname: "/people/employee-list",
                                                 search: search ? `?q=${search}&page=${p}` : `?page=${p}`,
                                             })
                                         }} />
                                         {/* <DeliveryForm /> */}
                                     </Col>
                                     <Col sm={4} xs={12}>
-                                        <ProductDetail item={selected ?? products[0]} />
+                                        <EmployeeDetail item={selected ?? employees[0]} />
                                         {/*<PurchaseForm /> */}
                                     </Col>
                                 </Row>
                             </>
                     }
                 </div>
-                <AddProductPopup
+                {/* <AddEmployeePopup
                     show={this.state.showAddPopup}
-                    onHide={() => this.showAddProductPopup(false)}
-                    onSubmit={(s) => addProduct(s, filter)}
-                />
+                    onHide={() => this.showAddEmployeePopup(false)}
+                    onSubmit={(s) => addEmployee(s, filter)}
+                /> */}
             </div>
 
         );
@@ -129,20 +129,20 @@ class Products extends React.Component {
 
 const mapStatetoProps = (state) => {
     return {
-        products: state.product.products,
-        loading: state.product.loading,
-        selected: state.product.selected,
-        count: state.product.count,
-        changed: state.product.changed,
+        employees: state.employeeList.employees,
+        loading: state.employeeList.loading,
+        selected: state.employeeList.selected,
+        count: state.employeeList.count,
+        changed: state.employeeList.changed,
         //loading: true,
     };
 }
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-    fetchProducts,
-    changeSelectedProduct,
-    addProduct,
-    deleteProduct,
+    fetchEmployees,
+    changeSelectedEmployee,
+    // addEmployee,
+    // deleteEmployee,
 }, dispatch);
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(Products));
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(Employees));
