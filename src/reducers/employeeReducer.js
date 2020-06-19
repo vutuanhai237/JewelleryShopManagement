@@ -1,4 +1,6 @@
 
+import { EMPLOYEE_ADD_ITEMTEMPTLIST, EMPLOYEE_CHANGE_ITEMTEMPTLIST, EMPLOYEE_DELETE_ITEMTEMPTLIST, EMPLOYEE_DISABLE_ITEMLIST } from "../constants"
+
 const fakeItemList = [
     {
         itemID: 0,
@@ -18,32 +20,24 @@ const fakeItemList = [
 
 ];
 
-// const fakeItemTemptList = [
-//     {
-//         itemID: 2,
-//         name: "Vàng 00000",
-//         prices: 400000,
-//         quantity: 0,
-//     },
-// ]
 const fakeCustomer = [
     {
         customerID: 0,
         name: "Nguyễn Văn A",
         number: "0123456789",
-        address: "Khu Phố 6"
+        id: "Khu Phố 6"
     },
     {
         customerID: 1,
         name: "Nguyễn Văn B",
         number: "313131311",
-        address: "Khu Phố 5"
+        id: "Khu Phố 5"
     },
     {
         customerID: 2,
         name: "Nguyễn Văn C",
         number: "0123456744",
-        address: "Khu Phố 4"
+        id: "Khu Phố 4"
     }
 ];
 const initialState = {
@@ -54,14 +48,13 @@ const initialState = {
         customerID: -1,
         name: "Trống",
         number: "Trống",
-        address: "Trống"
+        id: "Trống"
     },
     disableItemList: false
 }
-
 function employeeReducer(state = initialState, action) {
     switch (action.type) {
-        case "EMPLOYEEADDITEMTEMPTLIST":
+        case EMPLOYEE_ADD_ITEMTEMPTLIST:
             let temp = state.itemTemptList;
             let isInTemp = false;
             temp.map((item, i) => {
@@ -80,11 +73,11 @@ function employeeReducer(state = initialState, action) {
                 });
             }
             return { ...state, itemTemptList: temp };
-        case "EMPLOYEEDELETEITEMTEMPTLIST":
+        case EMPLOYEE_DELETE_ITEMTEMPTLIST:
             let temp2 = state.itemTemptList;
             temp2 = temp2.filter(e => e.itemID !== action.itemID);
             return { ...state, itemTemptList: temp2 }
-        case "EMPLOYEECHANGEITEMTEMPTLIST":
+        case EMPLOYEE_CHANGE_ITEMTEMPTLIST:
             let temp5 = state.itemTemptList;
             if (parseInt(action.quantity) >= 0) {
                 temp5[action.itemID].quantity = parseInt(action.quantity);
@@ -93,12 +86,11 @@ function employeeReducer(state = initialState, action) {
                 temp5[action.itemID].quantity = parseInt(1);
             }
             return { ...state, itemTemptList: temp5 }
-        case "EMPLOYEESETCUSTOMERTEMPTLIST":
+        case "EMPLOYEE_SET_CUSTOMERTEMPTLIST":
             let temp3 = state.customerList;
             temp3 = temp3.find(e => e.customerID == action.customerID);
             return { ...state, customerCurrent: temp3};
-            //return {...state};
-        case "EMPLOYEEDISABLEITEMLIST":
+        case EMPLOYEE_DISABLE_ITEMLIST:
             return {...state, disableItemList: action.item};
         default:
             return initialState;

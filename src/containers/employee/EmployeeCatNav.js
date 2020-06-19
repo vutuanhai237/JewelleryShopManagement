@@ -19,7 +19,7 @@ class EmployeeCatNav extends Component {
                 img: iconBill,
                 label: 'Hóa đơn',
                 onClick: () => changeCategory(0),
-                href: "#",
+                href: "employee/",
                 active: category === 0,
             },
             {
@@ -27,7 +27,7 @@ class EmployeeCatNav extends Component {
                 img: iconService,
                 label: 'Dịch vụ',
                 onClick: () => changeCategory(1),
-                href: "#",
+                href: "employee/service",
                 active: category === 1,
             },
             {
@@ -35,7 +35,7 @@ class EmployeeCatNav extends Component {
                 img: iconCustomer,
                 label: 'Khách hàng',
                 onClick: () => changeCategory(2),
-                href: "#",
+                href: "employee/customer",
                 active: category === 2,
             },
             {
@@ -43,7 +43,7 @@ class EmployeeCatNav extends Component {
                 img: iconBuy_Hold,
                 label: 'Mua/cầm đồ',
                 onClick: () => changeCategory(3),
-                href: "#",
+                href: "employee/rent",
                 active: category === 3,
             },
         ];

@@ -11,7 +11,7 @@ class ItemInfo extends React.Component {
         };
     }
     changeQuantity(evt) {
-        if (evt.target.value >= 0) {
+        if (evt.target.value >= 0 && evt.target.value !== "")  {
             this.setState({
                 number: evt.target.value
             });
@@ -21,6 +21,7 @@ class ItemInfo extends React.Component {
                 number: 1
             });
         }
+        console.log(this.props.item.itemID, evt.target.value);
         this.props.changeItemTemptList(this.props.item.itemID, evt.target.value);
         this.forceUpdate();
     }
@@ -31,7 +32,7 @@ class ItemInfo extends React.Component {
         return (
             <tr className="item-info">
                 <td>{this.props.item.name}</td>
-                <td><Form.Control disabled={this.props.disableItemList} plaintext onChange={evt => this.changeQuantity(evt)} value={this.props.item.quantity} /></td>
+                <td><Form.Control disabled={this.props.disableItemList} plaintext onChange={evt => this.changeQuantity(evt)} value={this.state.number} /></td>
                 <td>{this.props.item.prices}</td>
                 <td><Button disabled={this.props.disableItemList} keyid="btn-delete" variant="danger" onClick={this.deleteItem.bind(this)}>x</Button></td>
             </tr>
@@ -49,9 +50,8 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        changeItemTemptList: (itemID, quantity) => dispatch({ type: "EMPLOYEECHANGEITEMTEMPTLIST", itemID: itemID, quantity: quantity })
+        changeItemTemptList: (itemID, quantity) => dispatch({ type: "EMPLOYEE_CHANGE_ITEMTEMPTLIST", itemID: itemID, quantity: quantity })
     }
 }
 
 export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(ItemInfo));
-// export default withRouter(connect(mapStateToProps, mapDispatchToProps))(ItemInfo);

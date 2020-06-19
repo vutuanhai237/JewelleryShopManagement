@@ -53,7 +53,7 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteItemTemptList: (itemID) => dispatch({ type: "EMPLOYEEDELETEITEMTEMPTLIST", itemID: itemID})
+        deleteItemTemptList: (itemID) => dispatch({ type: "EMPLOYEE_DELETE_ITEMTEMPTLIST", itemID: itemID})
     }
 }
 

@@ -4,6 +4,7 @@ import Search from "./layout/Search";
 import Login from "./layout/Login";
 import Register from "./layout/Register";
 import Employee from "./layout/Employee";
+import Customer from "./layout/Customer";
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,19 +24,22 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          <Home/>
+          <Home />
         </Route>
         <Route exact path="/search">
-          <Search keyword={query.get('keyword')}/>
+          <Search keyword={query.get('keyword')} />
         </Route>
         <Route exact path="/login">
-          <Login/>
+          <Login />
         </Route>
         <Route exact path="/register">
-          <Register/>
+          <Register />
         </Route>
         <Route exact path="/employee">
-          <Employee/>
+          <Employee />
+        </Route>
+        <Route exact path="/employee/customer">
+          <Customer />
         </Route>
       </Switch>
       <div className="App">

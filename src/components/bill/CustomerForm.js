@@ -10,23 +10,23 @@ class CustomerForm extends React.Component {
         this.state = {customer: []};
         this.setState(this.state);
     }
-    setCustomerCurrent(evt) {
-        this.props.setCustomerCurrent(evt);
+    setDetailCustomer(cmnd) {
+        this.props.setDetailCustomer(cmnd);
         this.forceUpdate();
     }
     render() {
         const {customerList, customerCurrent} = this.props;
+
         return (
             <div>
                 <Form className="pt-2 customer-form">
                     <Tabs defaultActiveKey="customer" id="uncontrolled-tab-example">
                         <Tab eventKey="customer" title="Khách hàng">
                             <Row className="pt-3">
-                            <DropdownButton onSelect={(evt) => this.setCustomerCurrent(evt)} id="dropdown-item-button" title="Chọn khách hàng">
+                            <DropdownButton onSelect={(evt) => this.setDetailCustomer(evt)} id="dropdown-item-button" title="Chọn khách hàng">
                                 {
                                     customerList.map((item) =>
-                                        <Dropdown.Item eventKey={item.customerID}>{item.name}</Dropdown.Item>
-
+                                        <Dropdown.Item eventKey={item.cmnd}>{item.ten_kh}</Dropdown.Item>
                                     )
                                 }
                             </DropdownButton>
@@ -37,27 +37,44 @@ class CustomerForm extends React.Component {
                                     Tên
                                 </Form.Label>
                                 <Form.Label className="text-right" column lg="7" xs="7">
-                                    {customerCurrent.name}
+                                    {customerCurrent.ten_kh}
                                 </Form.Label>
                             </Row>
-
+                            <Row>
+                                <Form.Label className="text-left" column lg="5" xs="5">
+                                    CMND
+                                </Form.Label>
+                                <Form.Label className="text-right" column lg="7" xs="7">
+                                    {customerCurrent.cmnd}
+                                </Form.Label>
+                            </Row>
+                            <Row>
+                                <Form.Label className="text-left" column lg="5" xs="5">
+                                    Giới tính
+                                </Form.Label>
+                                <Form.Label className="text-right" column lg="7" xs="7">
+                                    {customerCurrent.gioi_tinh}
+                                </Form.Label>
+                            </Row>
+                            
                             <Row>
                                 <Form.Label className="text-left" column lg="5" xs="5">
                                     SĐT
                                 </Form.Label>
                                 <Form.Label className="text-right" column lg="7" xs="7">
-                                    {customerCurrent.number}
+                                    {customerCurrent.sdt}
+                                </Form.Label>
+                            </Row>
+                            <Row>
+                                <Form.Label className="text-left" column lg="5" xs="5">
+                                    Ngày sinh
+                                </Form.Label>
+                                <Form.Label className="text-right" column lg="7" xs="7">
+                                    {customerCurrent.ngay_sinh}
                                 </Form.Label>
                             </Row>
 
-                            <Row>
-                                <Form.Label className="text-left" column lg="5" xs="5">
-                                    Địa chỉ
-                                </Form.Label>
-                                <Form.Label className="text-right" column lg="7" xs="7">
-                                    {customerCurrent.address}
-                                </Form.Label>
-                            </Row>
+                            
                         </Tab>
                         <Tab eventKey="note" title="Ghi chú">
                             <br />
@@ -75,14 +92,14 @@ class CustomerForm extends React.Component {
 
 const mapStatetoProps = (state) => {
     return {
-        customerList: state.employee.customerList,
-        customerCurrent: state.employee.customerCurrent,
+        customerList: state.customer.customerList,
+        customerCurrent: state.customer.customerCurrent,
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCustomerCurrent: (item) => dispatch({ type: "EMPLOYEESETCUSTOMERTEMPTLIST", customerID: item})
+        setDetailCustomer: (cmnd) => dispatch({ type: "CUSTOMER_CHANGE", cmnd: cmnd })
     }
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TopNav from '../TopNav';
-import LoginForm from "../../containers/login/login_form"
+import LoginForm from "../../containers/login/LoginForm"
 import Footer from '../Footer';
 export default class Login extends Component {
     render() {
