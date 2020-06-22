@@ -4,16 +4,46 @@ import CustomerInfo from "./CustomerInfo"
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import "./form.scss"
-
+import axios from 'axios'
 class CustomerList extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             modalShow: false,
-            deleteCMND: ""
+            deleteCMND: "",
+            customerList: [],
         };
     }
+
+    componentDidMount() {
+        const { fetchAllCustomer } = this.props;
+        this.fetchAllCustomer();
+        console.log(this.state.customerList);
+
+    }
+
+    fetchAllCustomer() {       
+        var config = {
+            method: 'get',
+            url: 'http://chvbdq.herokuapp.com:80/khachhang/search?ten_kh=&cmnd=&from=0&count=10',
+            headers: {
+                'Authorization': "Bearer " + sessionStorage.getItem('token')
+            }
+        };
+        axios(config)
+            .then(response => {
+                this.setState({
+                    customerList: JSON.parse(JSON.stringify(response.data)).ds_khachhang,
+                })
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+    }
+
+
 
     handleOK() {
         this.setState({
@@ -35,11 +65,12 @@ class CustomerList extends Component {
         });
         this.forceUpdate();
     }
-    setDetailCustomer(cmnd) {
-        this.props.setDetailCustomer(cmnd);
+    setDetailCustomer(id) {
+        this.props.setDetailCustomer(id);
+        this.forceUpdate();
     }
     render() {
-        const { customerList } = this.props;
+        const {customerList} = this.state;
         return (
             <div className="customer-info-list">
                 <Modal
@@ -81,7 +112,7 @@ class CustomerList extends Component {
                         <tbody>
                             {
                                 customerList.map(item => {
-                                    return <CustomerInfo detailAction={() => this.setDetailCustomer(item.cmnd)} deleteAction={() => this.deleteCustomer(item.cmnd)} item={item} />
+                                    return <CustomerInfo key={item.id} detailAction={() => this.setDetailCustomer()} deleteAction={() => this.deleteCustomer()} item={item} />
                                 })
                             }
                         </tbody>
@@ -99,14 +130,15 @@ class CustomerList extends Component {
 
 const mapStatetoProps = (state) => {
     return {
-        customerList: state.customer.customerList,
+        //customerList: state.customer.customerList,
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteCustomer: (cmnd) => dispatch({ type: "CUSTOMER_DELETE", cmnd: cmnd }),
-        setDetailCustomer: (cmnd) => dispatch({ type: "CUSTOMER_CHANGE", cmnd: cmnd })
+        fetchAllCustomer: () => dispatch({ type: "CUSTOMER_GET_ALL"}),
+        deleteCustomer: (id) => dispatch({ type: "CUSTOMER_DELETE", id: id }),
+        
     }
 }
 

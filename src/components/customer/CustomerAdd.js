@@ -3,7 +3,8 @@ import { Tab, Tabs, Row, Form, Col, FormControl, DropdownButton, Dropdown, Modal
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import "./form.scss";
-class CustomerDetail extends React.Component {
+import axios from 'axios';
+class CustomerAdd extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +23,35 @@ class CustomerDetail extends React.Component {
         });
     }
     addCustomer() {
-       
+        var data = JSON.stringify({
+            "ten_kh": this.state.ten_kh,
+            "cmnd": this.state.cmnd,
+            "gioi_tinh": this.state.gioi_tinh,
+            "sdt": this.state.sdt,
+            "ngay_sinh": this.state.ngay_sinh
+        });
+        var config = {
+            method: 'post',
+            url: 'http://chvbdq.herokuapp.com:80/khachhang/tao',
+            headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+
+        axios(config)
+            .then(response => {
+                alert("Tạo khách hàng thành công !");
+                this.setState({
+                    modalShow: false,
+                });
+                window.location.reload(false);
+            })
+            .catch(error => {
+                console.log(error);
+                alert("SĐT hoặc CMND không hợp lệ, vui lòng nhập lại");
+            });
     }
 
     handleClose() {
@@ -32,11 +61,8 @@ class CustomerDetail extends React.Component {
     }
 
     handleOK() {
-        this.props.addCustomer(this.state.ten_kh, this.state.cmnd, this.state.gioi_tinh, this.state.sdt, this.state.ngay_sinh);
-        
-        this.setState({
-            modalShow: false,
-        });
+        //this.props.addCustomer(this.state.ten_kh, this.state.cmnd, this.state.gioi_tinh, this.state.sdt, this.state.ngay_sinh);
+        this.addCustomer();      
         this.forceUpdate();
     }
 
@@ -57,6 +83,7 @@ class CustomerDetail extends React.Component {
     }
 
     gioi_tinhChangeAction(evt) {
+        console.log(evt.target.value);
         this.setState({ gioi_tinh: evt.target.value });
     }
 
@@ -186,8 +213,19 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addCustomer: (ten_kh, cmnd, gioi_tinh, sdt, ngay_sinh) => dispatch({ type: "CUSTOMER_ADD", ten_kh: ten_kh, cmnd: cmnd, gioi_tinh: gioi_tinh, sdt: sdt, ngay_sinh: ngay_sinh }),
+        addCustomer: (ten_kh, cmnd, gioi_tinh, sdt, ngay_sinh) => dispatch(
+            {
+                type: "CUSTOMER_ADD", payload: [
+                    {
+                        ten_kh: ten_kh,
+                        cmnd: cmnd,
+                        gioi_tinh: gioi_tinh,
+                        sdt: sdt,
+                        ngay_sinh: ngay_sinh
+                    }
+                ]
+            })
     }
 }
 
-export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(CustomerDetail));
+export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(CustomerAdd));

@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { Form, Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+import { HOST, PORT } from '../../constants';
+import axios from 'axios';
 import "../form.scss";
 class LoginForm extends React.Component {
   constructor(props) {
@@ -12,20 +14,39 @@ class LoginForm extends React.Component {
       isLoginSuccess: false,
     };
   }
+
+  j
   login() {
-    if (this.refs.email.value == "haimeohung@gmail.com" && this.refs.password.value == "12345") {
-      this.setState({
-        isLoginSuccess: true,
-        modalShow: true,
+
+    axios.post(`http://chvbdq.herokuapp.com:80/free/login`, {
+      "ten_dang_nhap": this.refs.email.value,
+      "mat_khau": this.refs.password.value
+    }).then(response => {
+      let data = JSON.parse(JSON.stringify(response.data));
+      console.log(response);
+      if (response.status === 200) {
+        this.setState({
+          isLoginSuccess: true,
+          modalShow: true,
+        });
+        sessionStorage.setItem("token", JSON.parse(JSON.stringify(response.data.token)));
+      }
+
+
+    })
+      .catch(error => {
+        if (error.response.status === 401) {
+          this.setState({
+            isLoginSuccess: false,
+            modalShow: true,
+          });
+        } else {
+          console.log(error);
+        }
       });
-    }
-    else {
-      this.setState({
-        isLoginSuccess: false,
-        modalShow: true,
-      });
-    }
-    this.forceUpdate();
+
+
+
 
   }
   handleClose() {

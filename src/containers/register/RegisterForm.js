@@ -17,15 +17,13 @@ class RegisterForm extends React.Component {
                 isRegisterSuccess: true,
                 modalShow: true,
             });
-        }
-        else {
+        } else {
             this.setState({
                 isRegisterSuccess: false,
                 modalShow: true,
             });
         }
         this.forceUpdate();
-
     }
     handleClose() {
         this.setState({
@@ -45,29 +43,37 @@ class RegisterForm extends React.Component {
                         <Modal.Title contained-modal-title-vcenter>Thông báo</Modal.Title>
                     </Modal.Header>
                     {(() => {
-
                         if (this.state.isRegisterSuccess) {
-                            return <div>
-                                <Modal.Body>Đăng ký thành công</Modal.Body>
-                                <Modal.Footer>
-                                    <Button variant="success" href="/login" onClick={this.handleClose.bind(this)}>
-                                        Đồng ý
-                                    </Button>
-                                </Modal.Footer>
-                            </div>
+                            return (
+                                <div>
+                                    <Modal.Body>Đăng ký thành công</Modal.Body>
+                                    <Modal.Footer>
+                                        <Button
+                                            variant="success"
+                                            href="/login"
+                                            onClick={this.handleClose.bind(this)}
+                                        >
+                                            Đồng ý
+                    </Button>
+                                    </Modal.Footer>
+                                </div>
+                            );
                         } else {
-                            return <div>
-                                <Modal.Body>Đăng ký thất bại</Modal.Body>
-                                <Modal.Footer>
-                                    <Button variant="danger" onClick={this.handleClose.bind(this)}>
-                                        Đồng ý
-                                    </Button>
-                                </Modal.Footer>
-                            </div>
+                            return (
+                                <div>
+                                    <Modal.Body>Đăng ký thất bại</Modal.Body>
+                                    <Modal.Footer>
+                                        <Button
+                                            variant="danger"
+                                            onClick={this.handleClose.bind(this)}
+                                        >
+                                            Đồng ý
+                    </Button>
+                                    </Modal.Footer>
+                                </div>
+                            );
                         }
                     })()}
-
-
                 </Modal>
                 <div className="d-flex justify-content-center">
                     <Form className="register-form">
@@ -75,28 +81,26 @@ class RegisterForm extends React.Component {
                         <br />
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Tên đăng nhập</Form.Label>
-                            <Form.Control ref="email" type="email" placeholder="Ví dụ: abc@gmail.com" />
-
+                            <Form.Control
+                                ref="email"
+                                type="email"
+                                placeholder="Ví dụ: abc@gmail.com"
+                            />
                         </Form.Group>
 
                         <Form.Row>
-
                             {/* Mật khẩu mail */}
                             <Form.Group as={Col} controlId="formBasicPassword">
                                 <Form.Label>Mật khẩu</Form.Label>
                                 <Form.Control type="password" placeholder="Ví dụ: ***" />
-                                <Form.Text className="text-muted">
-                                </Form.Text>
-
+                                <Form.Text className="text-muted"></Form.Text>
                             </Form.Group>
                             <Form.Group as={Col} controlId="formBasicPassword">
                                 <Form.Label>Xác nhận Mật khẩu</Form.Label>
                                 <Form.Control type="password" placeholder="Ví dụ: ***" />
-                                <Form.Text className="text-muted">
-                                </Form.Text>
+                                <Form.Text className="text-muted"></Form.Text>
                             </Form.Group>
                         </Form.Row>
-
 
                         <Form.Group>
                             <Form.Label>Họ và tên</Form.Label>
@@ -119,8 +123,7 @@ class RegisterForm extends React.Component {
                                 <Form.Group as={Col} controlId="">
                                     <Form.Label>Ngày sinh</Form.Label>
                                     <Form.Control type="text" placeholder="Ví dụ: 5/5/2020" />
-                                    <Form.Text className="text-muted">
-                                    </Form.Text>
+                                    <Form.Text className="text-muted"></Form.Text>
                                 </Form.Group>
                                 <Form.Group as={Col} controlId="">
                                     <Form.Label>Giới tính</Form.Label>
@@ -138,15 +141,16 @@ class RegisterForm extends React.Component {
                                 type="text"
                                 placeholder="Ví dụ: 0123456789"
                             />
-
                         </Form.Group>
                         <hr></hr>
-                        <Button className="btn-lg btn-block" onClick={this.register.bind(this)}>
+                        <Button
+                            className="btn-lg btn-block"
+                            onClick={this.register.bind(this)}
+                        >
                             Đăng ký
-                        </Button>
+            </Button>
                     </Form>
                 </div>
-
             </div>
         );
     }

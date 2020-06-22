@@ -12,11 +12,6 @@ class CustomerDetail extends React.Component {
         const { customerCurrent } = this.props;
         return (
             <div>
-               
-
-
-
-
                 <Form className="pt-2 customer-form">
                     <Row className="pt-3">
                     </Row>
@@ -61,7 +56,7 @@ class CustomerDetail extends React.Component {
                             Ngày sinh
                                 </Form.Label>
                         <Form.Label className="text-right" column lg="7" xs="7">
-                            {customerCurrent.ngay_sinh}
+                            {customerCurrent.ngay_sinh.substring(0, 10)}
                         </Form.Label>
                     </Row>
                 </Form>
