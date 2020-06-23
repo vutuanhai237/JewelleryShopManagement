@@ -8,26 +8,58 @@ import ItemList from "../../components/bill/ItemList"
 import PurchaseForm from "../../components/bill/PurchaseForm"
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
-import "./form.scss"
+import "./form.scss";
+import axios from "axios";
 class BillForm extends React.Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            listProducts: [],
+            listTemptProducts: [],
+        }
+    }
     addItem(evt) {
-        const { itemList } = this.props;
-
-
-        let objectFound = itemList.find(element => element.itemID == evt);
-
+        const { listProducts } = this.state;
+        let objectFound = listProducts.find(item => item.idsp == evt);
+        objectFound.so_luong = 1;
         if (objectFound != null) {
             this.props.addItemTemptList(objectFound);
-
         }
-
         this.forceUpdate();
     }
 
-    render() {
-        const { itemList, itemTemptList } = this.props;
+    componentDidMount() {
+        this.fetchAllProduct();
+        console.log(this.state.listProducts);
+    }
 
+    fetchAllProduct() {
+        var data = '';
+        var config = {
+            method: 'get',
+            url: 'http://chvbdq.herokuapp.com:80/free/sanpham/search?loai_sp=&ten_sp=&from=0&so_luong=1000',
+            headers: {},
+            data: data
+        };
+
+        axios(config)
+            .then(response => {
+                this.setState({
+                    listProducts: JSON.parse(JSON.stringify(response.data.ds_sanpham)),
+                })
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+    }
+
+
+
+
+    render() {
+        const { itemTemptList } = this.props;
+        const { listProducts } = this.state;
         return (
 
             <div>
@@ -37,18 +69,17 @@ class BillForm extends React.Component {
                 <Row>
                     <Form className="bill-form">
                         <ButtonGroup justified>
-                        <DropdownButton  className="dropdown" onSelect={(evt) => this.addItem(evt)} id="dropdown-item-button" title="Thêm sản phẩm vào hóa đơn">
-                            {
-                                itemList.map((e, i) =>
-                                    <Dropdown.Item eventKey={e.itemID}>{e.name}</Dropdown.Item>
-
-                                )
-                            }
-                        </DropdownButton>
+                            <DropdownButton className="dropdown" onSelect={(idsp) => this.addItem(idsp)} id="dropdown-item-button" title="Thêm sản phẩm vào hóa đơn">
+                                {
+                                    listProducts.map(item =>
+                                        <Dropdown.Item eventKey={item.idsp}>{item.ten_sp}</Dropdown.Item>
+                                    )
+                                }
+                            </DropdownButton>
                         </ButtonGroup>
                         <Row>
                             <Col sm={8} xs={12}>
-                                <ItemList disabled = {this.props.disableItemList} key={itemTemptList}  />
+                                <ItemList disabled={this.props.disableItemList} key={itemTemptList} />
                                 <DeliveryForm />
                             </Col>
                             <Col sm={4} xs={12}>
@@ -67,7 +98,6 @@ class BillForm extends React.Component {
 
 const mapStatetoProps = (state) => {
     return {
-        itemList: state.employee.itemList,
         itemTemptList: state.employee.itemTemptList,
         disableItemList: state.employee.disableItemList,
     };
@@ -76,7 +106,7 @@ const mapStatetoProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
 
-        addItemTemptList: (itemID) => dispatch({ type: "EMPLOYEE_ADD_ITEMTEMPTLIST", item: itemID }),
+        addItemTemptList: (item) => dispatch({ type: "EMPLOYEE_ADD_ITEMTEMPTLIST", item: item }),
 
     }
 }

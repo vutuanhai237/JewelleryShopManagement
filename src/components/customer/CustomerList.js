@@ -19,8 +19,7 @@ class CustomerList extends Component {
     componentDidMount() {
         const { fetchAllCustomer } = this.props;
         this.fetchAllCustomer();
-        console.log(this.state.customerList);
-
+       
     }
 
     fetchAllCustomer() {       

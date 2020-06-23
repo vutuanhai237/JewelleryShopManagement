@@ -25,3 +25,5 @@ export const CUSTOMER_CHANGE = "CUSTOMER_CHANGE";
 export const CUSTOMER_DELETE = "CUSTOMER_DELETE";
 export const CUSTOMER_GET = "CUSTOMER_GET";
 export const CUSTOMER_GET_ALL = "CUSTOMER_GET_ALL";
+//global
+export const GLOBAL_CHANGE = "GLOBAL_CHANGE";

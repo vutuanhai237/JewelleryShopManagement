@@ -7,13 +7,13 @@ import "./form.scss"
 
 class ItemList extends Component {
 
-    deleteItem(itemID) {
-        
-        this.props.deleteItemTemptList(itemID);
+    deleteItem(idsp) {
+
+        this.props.deleteItemTemptList(idsp);
         this.forceUpdate();
     }
     render() {
-        const {itemTemptList} = this.props;
+        const { itemTemptList } = this.props;
         return (
             <div className="item-info-list">
                 <Row>
@@ -29,7 +29,7 @@ class ItemList extends Component {
                         <tbody>
                             {
                                 itemTemptList.map(item => {
-                                    return <ItemInfo deleteAction={()=> this.deleteItem(item.itemID)} item = {item}/>           
+                                    return <ItemInfo deleteAction={() => this.deleteItem(item.idsp)} product={item} />
                                 })
                             }
                         </tbody>
@@ -53,7 +53,7 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteItemTemptList: (itemID) => dispatch({ type: "EMPLOYEE_DELETE_ITEMTEMPTLIST", itemID: itemID})
+        deleteItemTemptList: (idsp) => dispatch({ type: "EMPLOYEE_DELETE_ITEMTEMPTLIST", idsp: idsp })
     }
 }
 

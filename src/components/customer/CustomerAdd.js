@@ -11,7 +11,7 @@ class CustomerAdd extends React.Component {
             modalShow: false,
             ten_kh: "",
             cmnd: "", isCMNDValid: true,
-            gioi_tinh: "",
+            gioi_tinh: "Nam",
             sdt: "", isSDTValid: true,
             ngay_sinh: "", isNgaySinhValid: true,
         };

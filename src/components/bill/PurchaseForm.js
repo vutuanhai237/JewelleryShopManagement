@@ -3,6 +3,7 @@ import { Tab, Tabs, Row, Col, Form, Button, InputGroup, ButtonGroup, OverlayTrig
 import "./form.scss";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
+import axios from 'axios'
 class PurchaseForm extends React.Component {
     constructor(props) {
         super(props);
@@ -25,12 +26,44 @@ class PurchaseForm extends React.Component {
         var myVar = setInterval(myTimer.bind(this), 1000);
     }
     ThanhToan() {
+        var ds_ct_phieu = new Array();
+        const { itemTemptList } = this.props;
+
+        for (var i = 0; i < itemTemptList.length; i++) {
+            ds_ct_phieu.push({
+                sp_id: itemTemptList[i].idsp,
+                so_luong: itemTemptList[i].so_luong,
+            })
+        };
+      
+        var data = JSON.stringify({
+            kh_id: this.props.customerCurrent.id,
+            // "nv_id": sessionStorage.getItem("id"),
+            nv_id: '4eku8bckaroqkzq',
+            ds_ctphieu: JSON.parse(JSON.stringify(ds_ct_phieu))
+        });
+
+        var config = {
+            method: 'post',
+            url: 'http://chvbdq.herokuapp.com:80/phieubanhang',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
         this.setState({
             isThanhTien: true,
             modalShow: true,
         });
-
     }
 
 
@@ -77,10 +110,13 @@ class PurchaseForm extends React.Component {
     }
     getThanhTien() {
         const { itemTemptList } = this.props;
+
         var TemptTongTien = 0;
         for (var i = 0; i < itemTemptList.length; i++) {
-            TemptTongTien += parseInt(itemTemptList[i].quantity) * parseFloat(itemTemptList[i].prices);
+            TemptTongTien += parseInt(itemTemptList[i].so_luong) * parseFloat(itemTemptList[i].gia_ban);
+
         };
+
         return TemptTongTien;
     }
     ThanhTien() {
@@ -108,7 +144,7 @@ class PurchaseForm extends React.Component {
                     <Modal.Footer>
                         <Button variant="success" onClick={this.handleClose.bind(this)}>
                             Đồng ý
-                        </Button>                  
+                        </Button>
                     </Modal.Footer>
                 </Modal>
 
@@ -233,9 +269,11 @@ class PurchaseForm extends React.Component {
     }
 }
 
-const mapStatetoProps = (state) => {
+const mapStatetoProps = state => {
     return {
         itemTemptList: state.employee.itemTemptList,
+        globalID: state.global.id,
+        customerCurrent: state.customer.customerCurrent,
     };
 }
 

@@ -38,25 +38,6 @@ function customerReducer(state = initialState, action) {
         case CUSTOMER_DELETE:
             return state;
         case CUSTOMER_CHANGE:
-
-
-            // var config = {
-            //     method: 'get',
-            //     url: 'http://chvbdq.herokuapp.com:80/khachhang/getbyid/' + action.customer.id,
-            //     headers: {
-            //         'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-            //     }
-            // };
-
-            // axios(config)
-            //     .then(response => {
-            //         var customer = JSON.parse(JSON.stringify(response.data));
-            //         return { ...state, customerCurrent: customer };
-            //     })
-            //     .catch(error => {
-            //         console.log(error);
-            //     });
-
             return {...state, customerCurrent: action.customer};
         case CUSTOMER_GET_ALL:
             return state;
