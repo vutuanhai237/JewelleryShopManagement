@@ -10,6 +10,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import "./form.scss";
 import axios from "axios";
+import { HOST, PORT } from "../../constants"
 class BillForm extends React.Component {
     constructor(props) {
         super(props);
@@ -20,7 +21,7 @@ class BillForm extends React.Component {
     }
     addItem(evt) {
         const { listProducts } = this.state;
-        let objectFound = listProducts.find(item => item.idsp == evt);
+        let objectFound = listProducts.find(item => item.idsp === evt);
         objectFound.so_luong = 1;
         if (objectFound != null) {
             this.props.addItemTemptList(objectFound);
@@ -30,14 +31,13 @@ class BillForm extends React.Component {
 
     componentDidMount() {
         this.fetchAllProduct();
-        console.log(this.state.listProducts);
     }
 
     fetchAllProduct() {
         var data = '';
         var config = {
             method: 'get',
-            url: 'http://chvbdq.herokuapp.com:80/free/sanpham/search?loai_sp=&ten_sp=&from=0&so_luong=1000',
+            url: `http://${HOST}:${PORT}/free/sanpham/search?loai_sp=&ten_sp=&from=0&so_luong=1000`,
             headers: {},
             data: data
         };
@@ -51,24 +51,19 @@ class BillForm extends React.Component {
             .catch(error => {
                 console.log(error);
             });
-
     }
-
-
-
 
     render() {
         const { itemTemptList } = this.props;
         const { listProducts } = this.state;
         return (
-
             <div>
                 <Row>
                     <EmployeeCatNav />
                 </Row>
                 <Row>
                     <Form className="bill-form">
-                        <ButtonGroup justified>
+                        <ButtonGroup justified="true">
                             <DropdownButton className="dropdown" onSelect={(idsp) => this.addItem(idsp)} id="dropdown-item-button" title="Thêm sản phẩm vào hóa đơn">
                                 {
                                     listProducts.map(item =>

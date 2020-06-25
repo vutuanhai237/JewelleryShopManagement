@@ -1,5 +1,4 @@
 import { GLOBAL_CHANGE } from "../constants"
-import axios from 'axios';
 
 const initialState = {
     id: "",

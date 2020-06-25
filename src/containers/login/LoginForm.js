@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { Form, Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Redirect } from "react-router-dom";
 import { HOST, PORT, GLOBAL_CHANGE } from '../../constants';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
@@ -16,10 +15,30 @@ class LoginForm extends React.Component {
         };
     }
 
-    j
+    GetNhanVienByToken() {
+
+        var config = {
+            method: 'get',
+            url: `hhttp://${HOST}:${PORT}/nhanvien/canhan`,
+            headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem("token"),
+            }
+        };
+
+        axios(config)
+            .then(response => {
+                sessionStorage.setItem("id_nv", JSON.parse(JSON.stringify(response.data)).id);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+    }
+
+
     login() {
 
-        axios.post(`http://chvbdq.herokuapp.com:80/free/login`, {
+        axios.post(`http://${HOST}:${PORT}/free/login`, {
             "ten_dang_nhap": this.refs.email.value,
             "mat_khau": this.refs.password.value
         }).then(response => {
@@ -31,6 +50,7 @@ class LoginForm extends React.Component {
                 });
                 sessionStorage.setItem("token", JSON.parse(JSON.stringify(response.data.token)));
                 sessionStorage.setItem("id", data.data.id);
+                this.GetNhanVienByToken();
                 this.props.globalChange(data.data.id, data.data.anh_dai_dien, data.data.loai_tk);
             }
         })
@@ -73,7 +93,7 @@ class LoginForm extends React.Component {
                                 <Modal.Footer>
                                     <Button variant="success" href="/" onClick={this.handleClose.bind(this)}>
                                         Đồng ý
-                  </Button>
+                                    </Button>
                                 </Modal.Footer>
                             </div>
                         } else {
@@ -82,7 +102,7 @@ class LoginForm extends React.Component {
                                 <Modal.Footer>
                                     <Button variant="danger" onClick={this.handleClose.bind(this)}>
                                         Đồng ý
-                  </Button>
+                                    </Button>
                                 </Modal.Footer>
                             </div>
                         }

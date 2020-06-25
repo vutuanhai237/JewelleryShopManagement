@@ -1,5 +1,5 @@
-import { CUSTOMER_ADD, CUSTOMER_CHANGE, CUSTOMER_DELETE, CUSTOMER_GET, CUSTOMER_GET_ALL } from "../constants"
-import axios from 'axios';
+import { CUSTOMER_ADD, CUSTOMER_CHANGE, CUSTOMER_DELETE, CUSTOMER_GET_ALL } from "../constants"
+
 
 const initialState = {
     customerList: [

@@ -1,13 +1,9 @@
 import React from "react";
-import { Tab, Tabs, Row, Form, FormControl, DropdownButton, Dropdown, Modal, Button } from "react-bootstrap";
+import { Row, Form } from "react-bootstrap";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import "./form.scss";
 class CustomerDetail extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const { customerCurrent } = this.props;
         return (

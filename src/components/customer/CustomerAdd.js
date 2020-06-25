@@ -1,9 +1,10 @@
 import React from "react";
-import { Tab, Tabs, Row, Form, Col, FormControl, DropdownButton, Dropdown, Modal, Button } from "react-bootstrap";
+import { Row, Form, Col, Modal, Button } from "react-bootstrap";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import "./form.scss";
 import axios from 'axios';
+import { HOST, PORT } from "../../constants"
 class CustomerAdd extends React.Component {
     constructor(props) {
         super(props);
@@ -32,7 +33,7 @@ class CustomerAdd extends React.Component {
         });
         var config = {
             method: 'post',
-            url: 'http://chvbdq.herokuapp.com:80/khachhang/tao',
+            url: `http://${HOST}:${PORT}/khachhang/tao`,
             headers: {
                 'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
                 'Content-Type': 'application/json'

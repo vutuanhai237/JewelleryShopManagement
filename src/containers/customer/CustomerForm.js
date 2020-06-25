@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Col, Row, Button } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 import EmployeeCatNav from "../employee/EmployeeCatNav"
 import CustomerList from "../../components/customer/CustomerList"
 import CustomerDetail from "../../components/customer/CustomerDetail"

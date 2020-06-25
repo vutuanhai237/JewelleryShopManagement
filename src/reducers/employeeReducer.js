@@ -32,7 +32,7 @@ function employeeReducer(state = initialState, action) {
         case EMPLOYEE_DELETE_ITEMTEMPTLIST:
             let temp2 = state.itemTemptList;
             temp2 = temp2.filter(item => item.idsp !== action.idsp);
-            console.log(action.idsp);
+            console.log(temp2);
             return { ...state, itemTemptList: temp2 }
         case EMPLOYEE_CHANGE_ITEMTEMPTLIST:
             let temp5 = state.itemTemptList;
@@ -46,7 +46,7 @@ function employeeReducer(state = initialState, action) {
             return { ...state, itemTemptList: temp5 }
         case "EMPLOYEE_SET_CUSTOMERTEMPTLIST":
             let temp3 = state.customerList;
-            temp3 = temp3.find(e => e.customerID == action.customerID);
+            temp3 = temp3.find(e => e.customerID === action.customerID);
             return { ...state, customerCurrent: temp3};
         case EMPLOYEE_DISABLE_ITEMLIST:
             return {...state, disableItemList: action.item};

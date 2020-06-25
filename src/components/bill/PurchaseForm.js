@@ -7,57 +7,61 @@ import axios from 'axios'
 class PurchaseForm extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             isThanhTien: true,
             isDuTien: false,
             TongTien: 0,
             TienThoi: 0,
             modalShow: false,
+            message: "Thêm hóa đơn thành công !",
+            modalVariant: "success",
         };
         this.setState(this.state);
         function myTimer() {
-
             this.setState({
                 TongTien: this.getThanhTien(),
             });
         }
-
         var myVar = setInterval(myTimer.bind(this), 1000);
     }
+
     ThanhToan() {
         var ds_ct_phieu = new Array();
         const { itemTemptList } = this.props;
-
         for (var i = 0; i < itemTemptList.length; i++) {
             ds_ct_phieu.push({
                 sp_id: itemTemptList[i].idsp,
                 so_luong: itemTemptList[i].so_luong,
             })
         };
-      
+
         var data = JSON.stringify({
             kh_id: this.props.customerCurrent.id,
-            // "nv_id": sessionStorage.getItem("id"),
-            nv_id: '4eku8bckaroqkzq',
+            nv_id: sessionStorage.getItem("id_nv"),
             ds_ctphieu: JSON.parse(JSON.stringify(ds_ct_phieu))
         });
-
         var config = {
             method: 'post',
-            url: 'http://chvbdq.herokuapp.com:80/phieubanhang',
+            url: 'http://chvbdq.herokuapp.com:80/phieubanhang/tao',
             headers: {
+                'Authorization': 'Bearer ' + sessionStorage.getItem("token"),
                 'Content-Type': 'application/json'
             },
             data: data
         };
 
         axios(config)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
+            .then(response => {
+                this.setState({
+                    message: "Thêm hóa đơn thành công !",
+                    modalVariant: "success",
+                })
             })
-            .catch(function (error) {
-                console.log(error);
+            .catch(error => {
+                this.setState({
+                    message: "Thêm hóa đơn thất bại! " + error.response.data.message,
+                    modalVariant: "danger",
+                })
             });
 
         this.setState({
@@ -74,7 +78,7 @@ class PurchaseForm extends React.Component {
         this.props.disableItemList(false);
     }
     renderTooltip(props) {
-        if (this.getThanhTien() == 0) {
+        if (this.getThanhTien() === 0) {
             return (
                 <Tooltip id="button-tooltip" {...props}>
                     Hãy nhập vài món hàng
@@ -99,7 +103,7 @@ class PurchaseForm extends React.Component {
             });
         }
         else {
-            if (this.state.TongTien != 0) {
+            if (this.state.TongTien !== 0) {
                 this.setState({
                     TienThoi: tienThoi,
                     isDuTien: true,
@@ -131,7 +135,7 @@ class PurchaseForm extends React.Component {
         this.setState({
             modalShow: false,
         })
-        window.location.reload();
+        if (this.state.modalVariant === "success") window.location.reload();
     }
     render() {
         return (
@@ -140,14 +144,13 @@ class PurchaseForm extends React.Component {
                     <Modal.Header closeButton>
                         <Modal.Title contained-modal-title-vcenter>Thông báo</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>Thêm hóa đơn mua hàng thành công</Modal.Body>
+                    <Modal.Body>{this.state.message}</Modal.Body>
                     <Modal.Footer>
-                        <Button variant="success" onClick={this.handleClose.bind(this)}>
+                        <Button variant={this.state.modalVariant} onClick={this.handleClose.bind(this)}>
                             Đồng ý
                         </Button>
                     </Modal.Footer>
                 </Modal>
-
                 <Form className="pt-2 purchase-form">
                     <Tabs defaultActiveKey="purchase" id="uncontrolled-tab-example">
                         <Tab eventKey="purchase" title="Thanh toán">
@@ -181,7 +184,6 @@ class PurchaseForm extends React.Component {
                                     <Form.Control className="text-right" readOnly value={this.state.TongTien} />
                                 </Col>
                                 <Col lg="2" xs="2">
-
                                     <InputGroup.Append >
                                         <InputGroup.Text id="basic-addon2">VNĐ</InputGroup.Text>
                                     </InputGroup.Append>
@@ -199,7 +201,6 @@ class PurchaseForm extends React.Component {
                                         <InputGroup.Text id="basic-addon2">VNĐ</InputGroup.Text>
                                     </InputGroup.Append>
                                 </Col>
-
                             </Row>
                             <Row>
                                 <Form.Label column lg="4" xs="4">
@@ -217,31 +218,22 @@ class PurchaseForm extends React.Component {
                             <Row>
                                 {(() => {
                                     if (this.state.isThanhTien) {
-
                                         return <OverlayTrigger
                                             placement="left"
                                             delay={{ show: 250, hide: 400 }}
                                             overlay={this.renderTooltip.bind(this)}
                                         >
                                             <Button disabled={!this.state.isDuTien} variant="warning" onClick={this.ThanhTien.bind(this)} className="float-right btn-block">Thành tiền</Button>
-
                                         </OverlayTrigger>
                                     }
                                     else {
                                         return <ButtonGroup className="btn-block">
                                             <Button variant="warning" onClick={this.ChinhSua.bind(this)} className="">Chỉnh sửa</Button>
                                             <Button variant="success" onClick={this.ThanhToan.bind(this)} className="">Thanh toán</Button>
-
                                         </ButtonGroup>
-
-
                                     }
                                 })()}
-
-
-
                             </Row>
-
                         </Tab>
                         <Tab eventKey="debt" title="Nợ">
                             <Row>
@@ -252,7 +244,6 @@ class PurchaseForm extends React.Component {
                                     <Form.Control className="text-right" readOnly value={this.state.TongTien} />
                                 </Col>
                                 <Col lg="2" xs="2">
-
                                     <InputGroup.Append >
                                         <InputGroup.Text id="basic-addon2">VNĐ</InputGroup.Text>
                                     </InputGroup.Append>
@@ -272,14 +263,12 @@ class PurchaseForm extends React.Component {
 const mapStatetoProps = state => {
     return {
         itemTemptList: state.employee.itemTemptList,
-        globalID: state.global.id,
         customerCurrent: state.customer.customerCurrent,
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
         disableItemList: (item) => dispatch({ type: "EMPLOYEEDISABLEITEMLIST", item: item })
     }
 }

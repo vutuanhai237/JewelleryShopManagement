@@ -17,7 +17,7 @@ class ItemList extends Component {
         return (
             <div className="item-info-list">
                 <Row>
-                    <Table responsive unbordered>
+                    <Table responsive unbordered="true">
                         <thead>
                             <tr>
                                 <th>Tên sản phẩm</th>

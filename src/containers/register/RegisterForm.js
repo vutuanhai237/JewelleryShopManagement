@@ -12,7 +12,7 @@ class RegisterForm extends React.Component {
         };
     }
     register() {
-        if (this.refs.email.value != "haimeohung@gmail.com") {
+        if (this.refs.email.value !== "haimeohung@gmail.com") {
             this.setState({
                 isRegisterSuccess: true,
                 modalShow: true,

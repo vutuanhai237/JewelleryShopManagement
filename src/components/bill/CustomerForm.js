@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import "./form.scss";
 import "../SearchBar.scss";
+import { HOST, PORT } from "../../constants"
 import axios from "axios";
 class CustomerForm extends React.Component {
     constructor(props) {
@@ -21,7 +22,7 @@ class CustomerForm extends React.Component {
     fetchAllCustomer() {
         var config = {
             method: 'get',
-            url: 'http://chvbdq.herokuapp.com:80/khachhang/search?ten_kh=&cmnd=&from=0&count=10',
+            url: `http://${HOST}:${PORT}/khachhang/search?ten_kh=&cmnd=&from=0&count=10`,
             headers: {
                 'Authorization': "Bearer " + sessionStorage.getItem('token')
             }
@@ -42,7 +43,7 @@ class CustomerForm extends React.Component {
     fetchCustomerByID(id) {
         var config = {
             method: 'get',
-            url: 'http://chvbdq.herokuapp.com:80/khachhang/getbyid/' + id,
+            url: `http://${HOST}:${PORT}/khachhang/getbyid/` + id,
             headers: {
                 'Authorization': 'Bearer ' + sessionStorage.getItem("token"),
             }
@@ -60,13 +61,11 @@ class CustomerForm extends React.Component {
             });
     }
 
-
     detailCustomer(evt) {
         this.fetchCustomerByID(evt);
     }
     render() {
         const { customerList, customerCurrent } = this.state;
-
         return (
             <div>
                 <Form className="pt-2 customer-form">
@@ -120,7 +119,6 @@ class CustomerForm extends React.Component {
                                     Ngày sinh
                                 </Form.Label>
                                 <Form.Label className="text-right" column lg="7" xs="7">
-
                                     {customerCurrent.ngay_sinh && customerCurrent.ngay_sinh.substring(0, 10)}
                                 </Form.Label>
                             </Row>
