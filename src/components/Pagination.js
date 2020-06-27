@@ -32,7 +32,7 @@ const Pagination = (props) => {
         <nav aria-label="Page navigation example" className="mr-md-4">
             <ul className="pagination justify-content-end">
                 <li className={"page-item" + (current === 1 ? " disabled" : "")}>
-                    <button disabled={current === 1} className="page-link" onClick={() => onChange(current - 1)}>Previous</button>
+                    <button disabled={current === 1} className="page-link" onClick={() => onChange(current - 1)}>Trước</button>
                 </li>
                 {
                     pmin !== 1 &&
@@ -48,7 +48,7 @@ const Pagination = (props) => {
                     </li>
                 }
                 <li className={"page-item" + (current === max ? " disabled" : "")}>
-                    <button disabled={current === max} className="page-link" onClick={() => onChange(current + 1)}>Next</button>
+                    <button disabled={current === max} className="page-link" onClick={() => onChange(current + 1)}>Tiếp</button>
                 </li>
             </ul>
         </nav>

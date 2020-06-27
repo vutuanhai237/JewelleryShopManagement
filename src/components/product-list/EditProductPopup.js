@@ -8,25 +8,42 @@ const opt = [
     "cccccc",
 ]
 
-class AddProductPopup extends React.Component {
+class EditProductPopup extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            avt: "https://via.placeholder.com/300",
-            anh_dai_dien: "usedefault",
-            ten_sp: "",
-            loai_sp: "",
-            gia_ban: "",
-            gia_nhap: "",
-            tieu_chuan: "",
-            khoi_luong: "",
-            so_luong: "1",
-            nhacc_id: "4eku6qskaxeee3w",
+            avt: null,
+            anh_dai_dien: null,
+            ten_sp: null,
+            loai_sp: null,
+            gia_ban: null,
+            gia_nhap: null,
+            tieu_chuan: null,
+            khoi_luong: null,
+            so_luong: null,
+            nhacc_id: null,
         }
         this.onAvatarChange = this.onAvatarChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.onSubmitHandle = this.onSubmitHandle.bind(this);
 
+    }
+
+    UNSAFE_componentWillReceiveProps() {
+        if (this.props.item)
+            this.setState({
+                avt: this.props.item.anh_dai_dien,
+                anh_dai_dien: null,
+                ten_sp: this.props.item.ten_sp,
+                loai_sp: this.props.item.loai_sp,
+                gia_ban: this.props.item.gia_ban,
+                gia_nhap: this.props.item.gia_nhap,
+                tieu_chuan: this.props.item.tieu_chuan,
+                khoi_luong: this.props.item.khoi_luong,
+                so_luong: this.props.item.so_luong,
+                nhacc_id: this.props.item.nhacc_id,
+            })
     }
 
     onAvatarChange(event) {
@@ -51,12 +68,11 @@ class AddProductPopup extends React.Component {
 
     }
 
-
-
     render() {
         return (
             <Modal
-                {...this.props}
+                show={this.props.show}
+                onHide={() => this.props.onHide()}
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
@@ -64,7 +80,7 @@ class AddProductPopup extends React.Component {
                 <Form onSubmit={this.onSubmitHandle} method="POST" ref={(c) => this.form = c}>
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
-                            Thêm sản phẩm
+                            Sửa thông tin sản phẩm
                 </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
@@ -131,12 +147,13 @@ class AddProductPopup extends React.Component {
     }
 }
 
-AddProductPopup.propTypes = {
+EditProductPopup.propTypes = {
     onSubmit: PropTypes.func.isRequired,
+    item: PropTypes.object.isRequired,
 }
 
-AddProductPopup.defaultProps = {
-    onSubmit: () => {}
+EditProductPopup.defaultProps = {
+    onSubmit: () => { }
 }
 
-export default AddProductPopup;
+export default EditProductPopup;

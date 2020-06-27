@@ -13,13 +13,14 @@ class EmployeeDetail extends React.Component {
     }
 
     componentDidMount() {
-        getEmployeeAvatar(this.props.item.tk_id).then(
-            res => {
-                this.setState({
-                    anh_dai_dien: res.data.anh_dai_dien,
-                })
-            }
-        )
+        if (this.props.item)
+            getEmployeeAvatar(this.props.item.tk_id).then(
+                res => {
+                    this.setState({
+                        anh_dai_dien: res.data.anh_dai_dien,
+                    })
+                }
+            )
     }
 
     render() {
@@ -80,7 +81,7 @@ class EmployeeDetail extends React.Component {
                             <span className="font-weight-bold">{dia_chi}</span>
                         </ListGroupItem>
                     </ListGroup>
-                    <Button>Sửa thông tin</Button>
+                    <Button onClick={this.props.onEdit}>Sửa thông tin</Button>
                 </div>
             </div >
         );

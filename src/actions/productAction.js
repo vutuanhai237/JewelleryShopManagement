@@ -35,6 +35,12 @@ export function addProductSuccess() {
     }
 }
 
+export function editProductSuccess() {
+    return {
+        type: PRODUCTS_LIST_CHANGED,
+    }
+}
+
 export function deleteProductSuccess() {
     return {
         type: PRODUCTS_LIST_CHANGED,

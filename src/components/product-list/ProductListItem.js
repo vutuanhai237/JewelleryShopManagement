@@ -6,14 +6,14 @@ const ProductListItem = (props) => {
     const {
         idsp,
         ten_sp,
-        nhacc_id,
+        gia_ban,
     } = props.item;
     return (
-        <tr className="item-info" onClick={props.onSelectItem} style={{cursor: "pointer"}}>
-            <td>{idsp}</td>
+        <tr className="item-info" onClick={props.onSelectItem} style={{ cursor: "pointer" }}>
+            <td style={{ textTransform: "uppercase" }}>{idsp}</td>
             <td>{ten_sp}</td>
-            <td>{nhacc_id}</td>
-            <td><Button keyid="btn-delete" variant="danger" onClick={props.handleDelete}>x</Button></td>
+            <td>{gia_ban}{" "}{"VND"}</td>
+            <td><Button keyid="btn-delete" variant="danger" onClick={props.handleDelete}>Xóa</Button></td>
         </tr>
     );
 }
@@ -25,7 +25,7 @@ ProductListItem.propTypes = {
 }
 
 ProductListItem.defaultProps = {
-    onSelectItem: () => {}
+    onSelectItem: () => { }
 }
 
 

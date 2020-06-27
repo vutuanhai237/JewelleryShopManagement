@@ -19,7 +19,7 @@ class LoginForm extends React.Component {
 
         var config = {
             method: 'get',
-            url: `hhttp://${HOST}:${PORT}/nhanvien/canhan`,
+            url: `http://${HOST}:${PORT}/nhanvien/canhan`,
             headers: {
                 'Authorization': 'Bearer ' + sessionStorage.getItem("token"),
             }
@@ -28,6 +28,7 @@ class LoginForm extends React.Component {
         axios(config)
             .then(response => {
                 sessionStorage.setItem("id_nv", JSON.parse(JSON.stringify(response.data)).id);
+                sessionStorage.setItem("ho_ten", JSON.parse(JSON.stringify(response.data)).ho_ten);
             })
             .catch(error => {
                 console.log(error);

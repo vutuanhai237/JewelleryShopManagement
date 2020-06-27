@@ -12,7 +12,7 @@ const ProductList = (props) => {
                     <tr>
                         <th>Mã sản phẩm</th>
                         <th>Tên sản phẩm</th>
-                        <th>Nhà cung cấp</th>
+                        <th>Giá bán</th>
                         <th></th>
                     </tr>
                 </thead>

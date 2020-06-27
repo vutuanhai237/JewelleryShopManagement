@@ -35,6 +35,12 @@ export function addEmployeeSuccess() {
     }
 }
 
+export function editEmployeeSuccess() {
+    return {
+        type: EMPLOYEES_LIST_CHANGED,
+    }
+}
+
 export function deleteEmployeeSuccess() {
     return {
         type: EMPLOYEES_LIST_CHANGED,

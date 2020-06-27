@@ -18,7 +18,7 @@ const EmployeeListItem = (props) => {
                 </Moment>
             </td>
             <td>{sdt}</td>
-            <td><Button keyid="btn-delete" variant="danger" onClick={props.handleDelete}>x</Button></td>
+            <td><Button keyid="btn-delete" variant="danger" onClick={props.handleDelete}>Xóa</Button></td>
         </tr>
     );
 }

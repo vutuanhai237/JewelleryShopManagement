@@ -4,11 +4,13 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { changeSelectedEmployee } from '../../actions/employeeListAction';
-import { fetchEmployees } from '../../services/employeeApi';
+import { fetchEmployees, addEmployee, editEmployee, deleteEmployee } from '../../services/employeeApi';
 import EmployeeList from "../../components/employee-list/EmployeeList";
 import EmployeeDetail from "../../components/employee-list/EmployeeDetail";
 import Pagination from "../../components/Pagination";
-//import AddEmployeePopup from "../../components/employee-list/AddEmployeePopup";
+import AddEmployeePopup from "../../components/employee-list/AddEmployeePopup";
+import { editProduct } from "../../services/productApi";
+import EditEmployeePopup from "../../components/employee-list/EditEmployeePopup";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -27,8 +29,10 @@ class Employees extends React.Component {
         this.state = {
             ...this.state,
             showAddPopup: false,
+            showEditPopup: false,
         }
         this.showAddEmployeePopup = this.showAddEmployeePopup.bind(this);
+        this.showEditEmployeePopup = this.showEditEmployeePopup.bind(this);
     }
 
     componentDidMount() {
@@ -47,6 +51,12 @@ class Employees extends React.Component {
         })
     }
 
+    showEditEmployeePopup(v) {
+        return this.setState({
+            showEditPopup: v
+        })
+    }
+
     render() {
         const {
             employees,
@@ -57,6 +67,7 @@ class Employees extends React.Component {
             history,
             search,
             addEmployee,
+            editEmployee,
             deleteEmployee,
             count,
             changed
@@ -73,6 +84,10 @@ class Employees extends React.Component {
                 pathname: "/people/employee-list",
                 search: search ? `?q=${search}&page=1` : `?page=1`,
             })
+        }
+
+        if(employees && employees.length > 0 && !selected) {
+            changeSelectedEmployee(employees[0]);
         }
 
         return (
@@ -99,28 +114,31 @@ class Employees extends React.Component {
                                 </Row>
                                 <Row>
                                     <Col sm={8} xs={12}>
-                                        <EmployeeList data={employees} onSelectItem={(item) => changeSelectedEmployee(item)} handleDelete={(item) => deleteEmployee(item.idsp, filter)} />
+                                        <EmployeeList data={employees} onSelectItem={(item) => changeSelectedEmployee(item)} handleDelete={(item) => deleteEmployee(item.id)} />
                                         <Pagination max={parseInt(Math.ceil(count / ITEMS_PER_PAGE))} current={page ? parseInt(page) : undefined} onChange={(p) => {
                                             return history.push({
                                                 pathname: "/people/employee-list",
                                                 search: search ? `?q=${search}&page=${p}` : `?page=${p}`,
                                             })
                                         }} />
-                                        {/* <DeliveryForm /> */}
                                     </Col>
                                     <Col sm={4} xs={12}>
-                                        <EmployeeDetail item={selected ?? employees[0]} />
-                                        {/*<PurchaseForm /> */}
+                                        <EmployeeDetail onEdit={() => this.showEditEmployeePopup(true)} item={selected ?? employees[0]}  />
                                     </Col>
                                 </Row>
                             </>
                     }
                 </div>
-                {/* <AddEmployeePopup
+                <AddEmployeePopup
                     show={this.state.showAddPopup}
                     onHide={() => this.showAddEmployeePopup(false)}
-                    onSubmit={(s) => addEmployee(s, filter)}
-                /> */}
+                    onSubmit={(s) => addEmployee(s)}
+                />
+                <EditEmployeePopup
+                    item={selected}
+                    show={this.state.showEditPopup}
+                    onHide={() => this.showEditEmployeePopup(false)}
+                    onSubmit={(s) => editEmployee(s, selected.id)} />
             </div>
 
         );
@@ -141,8 +159,9 @@ const mapStatetoProps = (state) => {
 const mapDispatchToProps = (dispatch) => bindActionCreators({
     fetchEmployees,
     changeSelectedEmployee,
-    // addEmployee,
-    // deleteEmployee,
+    addEmployee,
+    editEmployee,
+    deleteEmployee,
 }, dispatch);
 
 export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(Employees));

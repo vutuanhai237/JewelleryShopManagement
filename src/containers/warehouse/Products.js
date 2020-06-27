@@ -4,11 +4,12 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { changeSelectedProduct } from '../../actions/productAction';
-import { fetchProducts, addProduct, deleteProduct } from '../../services/productApi';
+import { fetchProducts, addProduct, deleteProduct, editProduct } from '../../services/productApi';
 import ProductList from "../../components/product-list/ProductList";
 import ProductDetail from "../../components/product-list/ProductDetail";
 import Pagination from "../../components/Pagination";
 import AddProductPopup from "../../components/product-list/AddProductPopup";
+import EditProductPopup from "../../components/product-list/EditProductPopup";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -27,8 +28,10 @@ class Products extends React.Component {
         this.state = {
             ...this.state,
             showAddPopup: false,
+            showEditPopup: false,
         }
         this.showAddProductPopup = this.showAddProductPopup.bind(this);
+        this.showEditProductPopup = this.showEditProductPopup.bind(this);
     }
 
     componentDidMount() {
@@ -47,6 +50,12 @@ class Products extends React.Component {
         })
     }
 
+    showEditProductPopup(v) {
+        return this.setState({
+            showEditPopup: v
+        })
+    }
+
     render() {
         const {
             products,
@@ -59,7 +68,8 @@ class Products extends React.Component {
             addProduct,
             deleteProduct,
             count,
-            changed
+            changed,
+            editProduct,
         } = this.props;
 
         const filter = createFilter({
@@ -68,11 +78,15 @@ class Products extends React.Component {
             itemPerPage: ITEMS_PER_PAGE
         });
 
-        if(changed) {
+        if (changed) {
             history.push({
                 pathname: "/warehouse/product-list",
                 search: search ? `?q=${search}&page=1` : `?page=1`,
             })
+        }
+
+        if(products && products.length > 0 && !selected) {
+            changeSelectedProduct(products[0]);
         }
 
         return (
@@ -93,13 +107,13 @@ class Products extends React.Component {
                                     </Col>
                                     <Col sm={12} md={8} className="d-flex">
                                         <Button className="ml-auto" variant="primary" onClick={() => this.showAddProductPopup(true)}>
-                                            Add Product
+                                            + Thêm sản phẩm
                                         </Button>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col sm={8} xs={12}>
-                                        <ProductList data={products} onSelectItem={(item) => changeSelectedProduct(item)} handleDelete={(item) => deleteProduct(item.idsp, filter)} />
+                                        <ProductList data={products} onSelectItem={(item) => changeSelectedProduct(item)} handleDelete={(item) => deleteProduct(item.idsp)} />
                                         <Pagination max={parseInt(Math.ceil(count / ITEMS_PER_PAGE))} current={page ? parseInt(page) : undefined} onChange={(p) => {
                                             return history.push({
                                                 pathname: "/warehouse/product-list",
@@ -109,7 +123,7 @@ class Products extends React.Component {
                                         {/* <DeliveryForm /> */}
                                     </Col>
                                     <Col sm={4} xs={12}>
-                                        <ProductDetail item={selected ?? products[0]} />
+                                        <ProductDetail onEdit={() => this.showEditProductPopup(true)} item={selected} />
                                         {/*<PurchaseForm /> */}
                                     </Col>
                                 </Row>
@@ -119,8 +133,13 @@ class Products extends React.Component {
                 <AddProductPopup
                     show={this.state.showAddPopup}
                     onHide={() => this.showAddProductPopup(false)}
-                    onSubmit={(s) => addProduct(s, filter)}
+                    onSubmit={(s) => addProduct(s)}
                 />
+                <EditProductPopup
+                    item={selected}
+                    show={this.state.showEditPopup}
+                    onHide={() => this.showEditProductPopup(false)}
+                    onSubmit={(s) => editProduct(s, selected.idsp)} />
             </div>
 
         );
@@ -143,6 +162,7 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     changeSelectedProduct,
     addProduct,
     deleteProduct,
+    editProduct,
 }, dispatch);
 
 export default withRouter(connect(mapStatetoProps, mapDispatchToProps)(Products));

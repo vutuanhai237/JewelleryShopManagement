@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, Image, ListGroup, ListGroupItem, Button} from "react-bootstrap";
+import EditProductPopup from "./EditProductPopup";
 
 const ProductDetail = (props) => {
     if (!props.item)
@@ -52,7 +53,7 @@ const ProductDetail = (props) => {
                         <span className="font-weight-bold">{khoi_luong}</span>
                     </ListGroupItem>
                 </ListGroup>
-                <Button>Sua san pham</Button>
+                <Button onClick={props.onEdit}>Sửa sản phẩm</Button>
             </div>
         </div >
     );
