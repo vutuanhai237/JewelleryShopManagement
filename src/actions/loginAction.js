@@ -5,14 +5,14 @@ import {
 export const login = (hash) => {
     return {
         type: LOGIN,
-        content: hash
+        payload: hash
     };
 }
 
 export const rememberLogin = (checked) => {
     return {
         type: REMEMBER_LOGIN,
-        content: checked
+        payload: checked
     };
 }
 

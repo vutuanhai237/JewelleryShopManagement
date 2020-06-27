@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TopNav from '../TopNav';
 import MenuNav from '../MenuNav';
+import PriceNav from '../PriceNav';
 import Banner from '../home/Banner';
 import HomeContent from '../home/HomeContent';
 import Footer from '../Footer';
@@ -11,6 +12,7 @@ export default class Home extends Component {
                 <div className="head">
                     <TopNav />
                     <MenuNav />
+                    <PriceNav/>
                     <Banner />        
                 </div>
                 <HomeContent/>

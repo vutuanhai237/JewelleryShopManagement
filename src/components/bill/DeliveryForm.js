@@ -7,7 +7,6 @@ class DeliveryForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = { date: "", isLayLien: false};
-        this.setState(this.state);
     }
     KhachLayLien() {
         let today = new Date();
@@ -32,7 +31,7 @@ class DeliveryForm extends React.Component {
                     {/* // */}
                     <Form.Group className="pt-2" as={Row} bsStyle="success">
                         <Form.Label column sm="3" >Ngày nhận</Form.Label>
-                        <Col column sm="9">
+                        <Col column="true" sm="9">
                             <Form.Control disabled={this.state.isLayLien} id="date-time" type="date" ></Form.Control>
                         </Col>
                     </Form.Group>
