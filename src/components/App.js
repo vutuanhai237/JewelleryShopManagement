@@ -11,6 +11,8 @@ import {
   Route,
   useLocation,
 } from 'react-router-dom';
+import Warehouse from "./layout/Warehouse";
+import People from "./layout/People";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -41,6 +43,8 @@ function App() {
         <Route exact path="/employee/customer">
           <Customer />
         </Route>
+        <Route path="/warehouse" component={Warehouse}/>
+        <Route path="/people" component={People}/>
       </Switch>
       <div className="App">
       </div>
