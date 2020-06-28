@@ -11,7 +11,7 @@ import Pagination from "../../components/Pagination";
 import AddProductPopup from "../../components/product-list/AddProductPopup";
 import EditProductPopup from "../../components/product-list/EditProductPopup";
 
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 10;
 
 function createFilter({ search, page, itemPerPage }) {
     return {
