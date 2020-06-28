@@ -15,6 +15,7 @@ import iconLogo from "../images/logo.png";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import axios from "axios";
+import {HOST, PORT} from '../constants'
 
 class TopNav extends Component {
 	constructor(props) {
@@ -33,7 +34,7 @@ class TopNav extends Component {
 	logout() {
 		var config = {
 			method: 'get',
-			url: `http://chvbdq.herokuapp.com:80/logout`,
+			url: `https://${HOST}:${PORT}/logout`,
 			headers: {
 				'Authorization': "Bearer " + sessionStorage.getItem('token')
 			}
@@ -69,7 +70,7 @@ class TopNav extends Component {
 		}
 		var config = {
 			method: 'get',
-			url: `http://chvbdq.herokuapp.com:80/nhanvien/canhan`,
+			url: `https://${HOST}:${PORT}/nhanvien/canhan`,
 			headers: {
 				'Authorization': "Bearer " + sessionStorage.getItem('token')
 			}

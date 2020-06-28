@@ -19,7 +19,7 @@ class LoginForm extends React.Component {
 
         var config = {
             method: 'get',
-            url: `http://${HOST}:${PORT}/nhanvien/canhan`,
+            url: `https://${HOST}:${PORT}/nhanvien/canhan`,
             headers: {
                 'Authorization': 'Bearer ' + sessionStorage.getItem("token"),
             }
@@ -39,7 +39,7 @@ class LoginForm extends React.Component {
 
     login() {
 
-        axios.post(`http://${HOST}:${PORT}/free/login`, {
+        axios.post(`https://${HOST}:${PORT}/free/login`, {
             "ten_dang_nhap": this.refs.email.value,
             "mat_khau": this.refs.password.value
         }).then(response => {

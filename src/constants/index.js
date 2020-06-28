@@ -1,5 +1,5 @@
 export const HOST = 'chvbdq.herokuapp.com';
-export const PORT = '80';
+export const PORT = '443';
 
 //home: fetch_products
 export const HOME_CHANGE_CATEGORY = 'HOME_CHANGE_CATEGORY';

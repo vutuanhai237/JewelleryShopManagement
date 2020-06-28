@@ -6,7 +6,7 @@ export default function fetchAllCustomer() {
     return dispatch => {
         var config = {
             method: 'get',
-            url: `http://${HOST}:${PORT}/khachhang/search?ten_kh=&cmnd=&from=0&count=10`,
+            url: `https://${HOST}:${PORT}/khachhang/search?ten_kh=&cmnd=&from=0&count=10`,
             headers: {
                 'Authorization': "Bearer " + sessionStorage.getItem('token')
             }

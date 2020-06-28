@@ -33,7 +33,7 @@ class CustomerAdd extends React.Component {
         });
         var config = {
             method: 'post',
-            url: `http://${HOST}:${PORT}/khachhang/tao`,
+            url: `https://${HOST}:${PORT}/khachhang/tao`,
             headers: {
                 'Authorization': 'Bearer ' + sessionStorage.getItem('token'),
                 'Content-Type': 'application/json'

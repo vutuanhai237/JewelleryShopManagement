@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import "./form.scss"
 import axios from 'axios'
+import { HOST, PORT } from '../../constants';
 class CustomerList extends Component {
 
     constructor(props) {
@@ -24,7 +25,7 @@ class CustomerList extends Component {
     fetchAllCustomer() {       
         var config = {
             method: 'get',
-            url: 'http://chvbdq.herokuapp.com:80/khachhang/search?ten_kh=&cmnd=&from=0&count=10',
+            url: `https://${HOST}:${PORT}/khachhang/search?ten_kh=&cmnd=&from=0&count=10`,
             headers: {
                 'Authorization': "Bearer " + sessionStorage.getItem('token')
             }

@@ -12,7 +12,7 @@ export default class Home extends Component {
                 <div className="head">
                     <TopNav {...this.props} />
                     <MenuNav />
-                    {/* <PriceNav /> */}
+                    <PriceNav />
                     <Banner />
                 </div>
                 <HomeContent />

@@ -22,7 +22,7 @@ class CustomerForm extends React.Component {
     fetchAllCustomer() {
         var config = {
             method: 'get',
-            url: `http://${HOST}:${PORT}/khachhang/search?ten_kh=&cmnd=&from=0&count=10`,
+            url: `https://${HOST}:${PORT}/khachhang/search?ten_kh=&cmnd=&from=0&count=10`,
             headers: {
                 'Authorization': "Bearer " + sessionStorage.getItem('token')
             }
@@ -43,7 +43,7 @@ class CustomerForm extends React.Component {
     fetchCustomerByID(id) {
         var config = {
             method: 'get',
-            url: `http://${HOST}:${PORT}/khachhang/getbyid/` + id,
+            url: `https://${HOST}:${PORT}/khachhang/getbyid/` + id,
             headers: {
                 'Authorization': 'Bearer ' + sessionStorage.getItem("token"),
             }
