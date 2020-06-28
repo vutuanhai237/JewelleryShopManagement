@@ -23,7 +23,7 @@ class PriceNav extends Component {
 
         var config = {
             method: 'get',
-            url: 'https://www.metals-api.com/api/latest?access_key=5d21c2v6tl03n8dduqpoqp59tawb5u323pdd87l8unaecw6a3zn25ql6v8o7',
+            url: 'https://www.metals-api.com/api/latest?access_key=5jg360x5p2m772g60zaa08y6100665km8evy7rbhtx011qf564o01wcxl08q',
             headers: {
 
             }
