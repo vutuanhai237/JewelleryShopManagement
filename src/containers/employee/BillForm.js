@@ -59,9 +59,6 @@ class BillForm extends React.Component {
         return (
             <div>
                 <Row>
-                    <EmployeeCatNav />
-                </Row>
-                <Row>
                     <Form className="bill-form">
                         <ButtonGroup justified="true">
                             <DropdownButton className="dropdown" onSelect={(idsp) => this.addItem(idsp)} id="dropdown-item-button" title="Thêm sản phẩm vào hóa đơn">

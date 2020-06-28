@@ -6,7 +6,7 @@ export default function fetchAllCustomer() {
     return dispatch => {
         var config = {
             method: 'get',
-            url: 'http://chvbdq.herokuapp.com:80/khachhang/search?ten_kh=&cmnd=&from=0&count=10',
+            url: `http://${HOST}:${PORT}/khachhang/search?ten_kh=&cmnd=&from=0&count=10`,
             headers: {
                 'Authorization': "Bearer " + sessionStorage.getItem('token')
             }
@@ -17,7 +17,11 @@ export default function fetchAllCustomer() {
                 return data;
             })
             .catch(function (error) {
-                console.log(error);
+                if(error.response && err.response.status === 401){
+                    alert("Bạn không có quyền truy cập trang này!");
+                    window.location.href = "/";
+                    return;
+                }
             });
 
         

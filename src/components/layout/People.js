@@ -13,7 +13,7 @@ const People = (props) => {
     return (
         <div className="head" style={{ height: '100vh', overflowY: 'scroll' }}>
             <BrowserRouter forceRefresh>
-                <TopNav />
+                <TopNav {...props} />
                 <PeopleNav className="mt-5" />
                 <Switch>
                     <Route exact path="/people/employee-list">

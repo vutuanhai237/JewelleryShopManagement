@@ -1,12 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button, Col, Row, FormLabel, Image, FormGroup, Form, FormControl } from 'react-bootstrap';
+import { THE_LOAI_SAN_PHAM } from '../../constants';
 
-const opt = [
-    "aaaaaa",
-    "bbbbbb",
-    "cccccc",
-]
 
 class EditProductPopup extends React.Component {
     constructor(props) {
@@ -15,13 +11,13 @@ class EditProductPopup extends React.Component {
         this.state = {
             avt: null,
             anh_dai_dien: null,
-            ten_sp: null,
-            loai_sp: null,
-            gia_ban: null,
-            gia_nhap: null,
-            tieu_chuan: null,
-            khoi_luong: null,
-            so_luong: null,
+            ten_sp: "",
+            loai_sp: "",
+            gia_ban: "",
+            gia_nhap: "",
+            tieu_chuan: "",
+            khoi_luong: "",
+            so_luong: "",
             nhacc_id: null,
         }
         this.onAvatarChange = this.onAvatarChange.bind(this);
@@ -34,7 +30,7 @@ class EditProductPopup extends React.Component {
         if (this.props.item)
             this.setState({
                 avt: this.props.item.anh_dai_dien,
-                anh_dai_dien: null,
+                anh_dai_dien: undefined,
                 ten_sp: this.props.item.ten_sp,
                 loai_sp: this.props.item.loai_sp,
                 gia_ban: this.props.item.gia_ban,
@@ -101,7 +97,7 @@ class EditProductPopup extends React.Component {
                                     <select required className="form-control" value={this.state.loai_sp} name="loai_sp" onChange={this.handleChange} >
                                         <option value="">Chọn loại sản phẩm</option>
                                         {
-                                            opt.map(item => {
+                                            THE_LOAI_SAN_PHAM.map(item => {
                                                 return <option key={item} value={item}>{item}</option>
                                             })
                                         }
@@ -119,13 +115,13 @@ class EditProductPopup extends React.Component {
                                     <FormLabel>Giá bán</FormLabel>
                                     <FormControl required type="number" value={this.state.gia_ban} name="gia_ban" onChange={this.handleChange} />
                                 </FormGroup>
-                                <FormGroup controlId="product-export-price">
-                                    <FormLabel>Khối lượng</FormLabel>
-                                    <FormControl required type="number" value={this.state.khoi_luong} name="khoi_luong" onChange={this.handleChange} />
-                                </FormGroup>
                                 <FormGroup controlId="product-standard">
+                                    <FormLabel>Khối lượng</FormLabel>
+                                    <FormControl type="number" value={this.state.khoi_luong} name="khoi_luong" onChange={this.handleChange} />
+                                </FormGroup>
+                                <FormGroup controlId="product-export-price">
                                     <FormLabel>Tiêu chuẩn</FormLabel>
-                                    <FormControl required type="text" value={this.state.tieu_chuan} name="tieu_chuan" onChange={this.handleChange} />
+                                    <FormControl type="text" value={this.state.tieu_chuan} name="tieu_chuan" onChange={this.handleChange} />
                                 </FormGroup>
                             </Col>
 
@@ -138,8 +134,8 @@ class EditProductPopup extends React.Component {
                         </Row>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary" type="submit" >Thêm</Button>
-                        <Button variant="danger" onClick={this.props.onHide}>Close</Button>
+                        <Button variant="primary" type="submit" >Lưu lại</Button>
+                        <Button variant="danger" onClick={this.props.onHide}>Đóng</Button>
                     </Modal.Footer>
                 </Form>
             </Modal>
