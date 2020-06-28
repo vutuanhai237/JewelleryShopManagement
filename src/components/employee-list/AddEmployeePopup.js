@@ -123,7 +123,7 @@ class AddEmployeePopup extends React.Component {
                                     <FormControl pattern="[0-9]{9,11}" required title="CMND phải từ 9 tới 11 kí số" value={this.state.cmnd} name="cmnd" onChange={this.handleChange} />
                                 </FormGroup>
                                 <FormGroup >
-                                    <Form.File type="file" type="file" accept="image/*" onChange={this.onAvatarChange} id="exampleFormControlFile1" label="Chọn ảnh đại diện" />
+                                    <Form.File type="file" accept="image/*" onChange={this.onAvatarChange} id="exampleFormControlFile1" label="Chọn ảnh đại diện" />
                                 </FormGroup>
                                 <Image fluid src={this.state.avt} alt="avt" style={{ border: "#ddd solid 1px" }} />
                             </Col>

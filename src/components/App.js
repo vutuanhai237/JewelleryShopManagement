@@ -4,7 +4,6 @@ import Search from "./layout/Search";
 import Login from "./layout/Login";
 import Register from "./layout/Register";
 import Employee from "./layout/Employee";
-import Customer from "./layout/Customer";
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,7 +24,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Home}/>
+        <Route exact path="/" component={Home} />
         <Route exact path="/search">
           <Search keyword={query.get('keyword')} />
         </Route>

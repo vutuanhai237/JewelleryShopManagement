@@ -28,15 +28,12 @@ class EmployeeDetail extends React.Component {
         if (!this.props.item)
             return null;
         const {
-            id,
             ho_ten,
             ngay_sinh,
-            luong,
             cmnd,
             gioi_tinh,
             sdt,
             dia_chi,
-            ghi_chu,
         } = this.props.item;
 
         const { anh_dai_dien } = this.state;

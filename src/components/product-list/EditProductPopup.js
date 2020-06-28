@@ -127,7 +127,7 @@ class EditProductPopup extends React.Component {
 
                             <Col sm={12} md={6}>
                                 <FormGroup >
-                                    <Form.File type="file" type="file" accept="image/*" onChange={this.onAvatarChange} id="exampleFormControlFile1" label="Chọn ảnh đại diện" />
+                                    <Form.File type="file" accept="image/*" onChange={this.onAvatarChange} id="exampleFormControlFile1" label="Chọn ảnh đại diện" />
                                 </FormGroup>
                                 <Image fluid src={this.state.avt} alt="avt" style={{ border: "#ddd solid 1px" }} />
                             </Col>

@@ -72,12 +72,6 @@ class Products extends React.Component {
             editProduct,
         } = this.props;
 
-        const filter = createFilter({
-            search,
-            page,
-            itemPerPage: ITEMS_PER_PAGE
-        });
-
         if (changed) {
             history.push({
                 pathname: "/warehouse/product-list",
@@ -85,7 +79,7 @@ class Products extends React.Component {
             })
         }
 
-        if(products && products.length > 0 && !selected) {
+        if (products && products.length > 0 && !selected) {
             changeSelectedProduct(products[0]);
         }
 

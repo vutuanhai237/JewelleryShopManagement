@@ -23,11 +23,11 @@ class PurchaseForm extends React.Component {
                 TongTien: this.getThanhTien(),
             });
         }
-        var myVar = setInterval(myTimer.bind(this), 1000);
+        setInterval(myTimer.bind(this), 1000);
     }
 
     ThanhToan() {
-        var ds_ct_phieu = new Array();
+        var ds_ct_phieu = [];
         const { itemTemptList } = this.props;
         for (var i = 0; i < itemTemptList.length; i++) {
             ds_ct_phieu.push({
