@@ -17,7 +17,7 @@ export default function fetchAllCustomer() {
                 return data;
             })
             .catch(function (error) {
-                if(error.response && err.response.status === 401){
+                if(error.response && error.response.status === 401){
                     alert("Bạn không có quyền truy cập trang này!");
                     window.location.href = "/";
                     return;

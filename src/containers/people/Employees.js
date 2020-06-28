@@ -107,7 +107,7 @@ class Employees extends React.Component {
                                         </Form>
                                     </Col>
                                     <Col sm={12} md={8} className="d-flex">
-                                        <Button className="ml-auto" variant="primary" onClick={() => this.showAddEmployeePopup(true)}>
+                                        <Button className="ml-auto mt-4 mt-md-0" variant="primary" onClick={() => this.showAddEmployeePopup(true)}>
                                             + Thêm nhân viên
                                         </Button>
                                     </Col>

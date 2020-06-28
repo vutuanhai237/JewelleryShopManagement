@@ -15,7 +15,6 @@ import iconLogo from "../images/logo.png";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import axios from "axios";
-import { useHistory } from 'react-router-dom';
 
 class TopNav extends Component {
 	constructor(props) {
@@ -65,6 +64,8 @@ class TopNav extends Component {
 			this.setState({
 				login: true,
 			})
+		} else {
+			return;
 		}
 		var config = {
 			method: 'get',
@@ -82,6 +83,15 @@ class TopNav extends Component {
 					});
 			})
 			.catch(error => {
+				if (error.response && error.response.status === 401) {
+					sessionStorage.removeItem("token");
+					sessionStorage.removeItem("id_nv");
+					sessionStorage.removeItem("ho_ten");
+					alert("Phiên đăng nhập đã hết hạn vui lòng đăng nhập lại!");
+					this.props.history.push({
+						pathname: "/login",
+					})
+				}
 				console.log(error);
 			});
 	}
@@ -101,7 +111,7 @@ class TopNav extends Component {
 			);
 		} else {
 			return (
-				<Dropdown>
+				<Dropdown className="d-none d-md-block">
 					<Dropdown.Toggle size="sm" variant="dark" id="dropdown-basic">
 						{this.state.info?.ho_ten ?? sessionStorage.getItem("ho_ten")}
 					</Dropdown.Toggle>
@@ -157,9 +167,31 @@ class TopNav extends Component {
 												</li>
 											);
 										})}
-										<li className="text-uppercase">
-											<NavLink>Đăng nhập</NavLink>
-										</li>
+										{
+											!this.state.login ?
+												<li className="text-uppercase">
+													<NavLink href="/login">Đăng nhập</NavLink>
+												</li>
+												:
+												<>
+													<li className="text-uppercase">
+														<NavLink href="/employee/invoice">Phiếu bán hàng</NavLink>
+													</li>
+													<li className="text-uppercase">
+														<NavLink href="/warehouse/product-list">Sản phẩm</NavLink>
+													</li>
+													<li className="text-uppercase">
+														<NavLink href="/employee/customer">Quản lý khách hàng</NavLink>
+													</li>
+													<li className="text-uppercase">
+														<NavLink href="/people/employee-list">Quản lý nhân viên</NavLink>
+													</li>
+													<li className="text-uppercase">
+														<NavLink onClick={this.logout}>Đăng xuất</NavLink>
+													</li>
+												</>
+										}
+
 									</ul>
 								</Nav>
 								<SearchBar noBorder placeholder='Bạn muốn mặt hàng nào' paramName='keyword' action='/search' className='d-md-none' />

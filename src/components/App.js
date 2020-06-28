@@ -25,9 +25,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
+        <Route exact path="/" component={Home}/>
         <Route exact path="/search">
           <Search keyword={query.get('keyword')} />
         </Route>
