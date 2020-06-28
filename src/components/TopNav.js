@@ -15,7 +15,7 @@ import iconLogo from "../images/logo.png";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import axios from "axios";
-import {HOST, PORT} from '../constants'
+import { HOST, PORT } from '../constants'
 
 class TopNav extends Component {
 	constructor(props) {
@@ -23,12 +23,14 @@ class TopNav extends Component {
 		this.state = {
 			login: false,
 			info: null,
+			loai_tk: null,
 		}
 		this.logout = this.logout.bind(this);
 	}
 
 	componentDidMount() {
 		this.fetchLoginState();
+		this.fetchCurrentAccount();
 	}
 
 	logout() {
@@ -75,12 +77,32 @@ class TopNav extends Component {
 				'Authorization': "Bearer " + sessionStorage.getItem('token')
 			}
 		};
-		console.log(config);
 		axios(config)
 			.then(response => {
 				if (response.data)
 					this.setState({
 						info: response.data
+					});
+
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	}
+
+	fetchCurrentAccount() {
+		var config = {
+			method: 'get',
+			url: `https://${HOST}:${PORT}/taikhoan/canhan`,
+			headers: {
+				'Authorization': "Bearer " + sessionStorage.getItem('token')
+			}
+		};
+		axios(config)
+			.then(response => {
+				if (response.data)
+					this.setState({
+						loai_tk: parseInt(response.data.loai_tk),
 					});
 			})
 			.catch(error => {
@@ -117,12 +139,35 @@ class TopNav extends Component {
 						{this.state.info?.ho_ten ?? sessionStorage.getItem("ho_ten")}
 					</Dropdown.Toggle>
 
+
+
 					<Dropdown.Menu>
-						<Dropdown.Item href="/employee/invoice">Phiếu bán hàng</Dropdown.Item>
-						<Dropdown.Item href="/warehouse/product-list">Sản phẩm</Dropdown.Item>
-						<Dropdown.Item href="/employee/customer">Quản lý khách hàng</Dropdown.Item>
-						<Dropdown.Item href="/people/employee-list">Quản lý nhân viên</Dropdown.Item>
-						<Dropdown.Divider />
+						{
+							this.state.loai_tk &&
+							<>
+								{
+									(this.state.loai_tk === 1 || this.state.loai_tk === 4) &&
+									<Dropdown.Item href="/employee/invoice">Phiếu bán hàng</Dropdown.Item>
+								}
+
+								{
+									(this.state.loai_tk === 2 || this.state.loai_tk === 4) &&
+									<Dropdown.Item href="/warehouse/product-list">Sản phẩm</Dropdown.Item>
+								}
+
+								{
+									(this.state.loai_tk === 1 || this.state.loai_tk === 3 || this.state.loai_tk === 4) &&
+									<Dropdown.Item href="/employee/customer">Quản lý khách hàng</Dropdown.Item>
+								}
+
+								{
+									(this.state.loai_tk === 3 || this.state.loai_tk === 4) &&
+									<Dropdown.Item href="/people/employee-list">Quản lý nhân viên</Dropdown.Item>
+								}
+
+								<Dropdown.Divider />
+							</>
+						}
 						<Dropdown.Item onClick={this.logout}>Đăng xuất</Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>

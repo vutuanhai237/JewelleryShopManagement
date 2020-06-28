@@ -11,7 +11,7 @@ import Pagination from "../../components/Pagination";
 import AddEmployeePopup from "../../components/employee-list/AddEmployeePopup";
 import EditEmployeePopup from "../../components/employee-list/EditEmployeePopup";
 
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 10;
 
 function createFilter({ search, page, itemPerPage }) {
     return {
