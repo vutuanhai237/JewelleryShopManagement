@@ -8,7 +8,7 @@ class Search extends Component {
     render() {
         return (
             <div>
-                <TopNav {...props}/>
+                <TopNav {...this.props}/>
                 <Container>
                     <SearchResultContent keyword={this.props.keyword} />
                 </Container>
