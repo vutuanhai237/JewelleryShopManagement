@@ -114,10 +114,6 @@ class AddEmployeePopup extends React.Component {
                                         <option value="4">Giám đốc</option>
                                     </select>
                                 </FormGroup>
-                                <FormGroup controlId="employee-luong">
-                                    <FormLabel>Lương</FormLabel>
-                                    <FormControl type="number" value={this.state.luong} name="luong" onChange={this.handleChange} />
-                                </FormGroup>
 
                             </Col>
 

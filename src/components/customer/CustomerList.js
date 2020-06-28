@@ -36,6 +36,11 @@ class CustomerList extends Component {
                 })
             })
             .catch(error => {
+                if (error.response && error.response.status === 401) {
+                    alert("Bạn không có quyền truy cập trang này!");
+                    window.location.href = "/";
+                    return;
+                }
                 console.log(error);
             });
 

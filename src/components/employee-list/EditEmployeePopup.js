@@ -16,13 +16,13 @@ class EditEmployeePopup extends React.Component {
         this.state = {
             avt: null,
             anh_dai_dien: null,
-            ho_ten: null,
-            cmnd: null,
-            sdt: null,
-            ngay_sinh: null,
-            gioi_tinh: null,
-            luong: null,
-            dia_chi: null,
+            ho_ten: "",
+            cmnd: "",
+            sdt: "",
+            ngay_sinh: "",
+            gioi_tinh: "",
+            //luong: "",
+            dia_chi: "",
         }
         this.onAvatarChange = this.onAvatarChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -40,7 +40,7 @@ class EditEmployeePopup extends React.Component {
                 sdt: this.props.item.sdt,
                 ngay_sinh: this.props.item.ngay_sinh,
                 gioi_tinh: this.props.item.gioi_tinh,
-                luong: this.props.item.luong,
+                //luong: this.props.item.luong,
                 dia_chi: this.props.item.dia_chi,
             })
     }
@@ -123,10 +123,6 @@ class EditEmployeePopup extends React.Component {
                                 <FormGroup controlId="employee-cmnd">
                                     <FormLabel>CMND</FormLabel>
                                     <FormControl pattern="[0-9]{9,11}" required title="CMND phải từ 9 tới 11 kí số" value={this.state.cmnd} name="cmnd" onChange={this.handleChange} />
-                                </FormGroup>
-                                <FormGroup controlId="employee-luong">
-                                    <FormLabel>Lương</FormLabel>
-                                    <FormControl type="number" value={this.state.luong} name="luong" onChange={this.handleChange} />
                                 </FormGroup>
                                 {/* <FormGroup >
                                     <Form.File type="file" type="file" accept="image/*" onChange={this.onAvatarChange} id="exampleFormControlFile1" label="Chọn ảnh đại diện" />

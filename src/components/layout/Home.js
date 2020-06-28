@@ -10,13 +10,13 @@ export default class Home extends Component {
         return (
             <div className="home">
                 <div className="head">
-                    <TopNav />
+                    <TopNav {...this.props} />
                     <MenuNav />
-                    <PriceNav/>
-                    <Banner />        
+                    <PriceNav />
+                    <Banner />
                 </div>
-                <HomeContent/>
-                <Footer/>
+                <HomeContent />
+                <Footer />
             </div>
         );
     }

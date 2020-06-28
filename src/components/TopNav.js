@@ -15,6 +15,7 @@ import iconLogo from "../images/logo.png";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import axios from "axios";
+import { useHistory } from 'react-router-dom';
 
 class TopNav extends Component {
 	constructor(props) {
@@ -47,6 +48,10 @@ class TopNav extends Component {
 				sessionStorage.removeItem("token");
 				sessionStorage.removeItem("id_nv");
 				sessionStorage.removeItem("ho_ten");
+				console.log(this.props);
+				this.props.history.push({
+					pathname: "/login",
+				})
 			})
 			.catch(error => {
 				console.log(error);
@@ -99,11 +104,13 @@ class TopNav extends Component {
 				<Dropdown>
 					<Dropdown.Toggle size="sm" variant="dark" id="dropdown-basic">
 						{this.state.info?.ho_ten ?? sessionStorage.getItem("ho_ten")}
-        </Dropdown.Toggle>
+					</Dropdown.Toggle>
 
 					<Dropdown.Menu>
+						<Dropdown.Item href="/employee/invoice">Phiếu bán hàng</Dropdown.Item>
 						<Dropdown.Item href="/warehouse/product-list">Sản phẩm</Dropdown.Item>
-						<Dropdown.Item href="/people/employee-list">Nhân viên</Dropdown.Item>
+						<Dropdown.Item href="/employee/customer">Quản lý khách hàng</Dropdown.Item>
+						<Dropdown.Item href="/people/employee-list">Quản lý nhân viên</Dropdown.Item>
 						<Dropdown.Divider />
 						<Dropdown.Item onClick={this.logout}>Đăng xuất</Dropdown.Item>
 					</Dropdown.Menu>

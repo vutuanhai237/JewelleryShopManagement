@@ -14,7 +14,7 @@ const Warehouse = (props) => {
     return (
         <div className="head" style={{ height: '100vh', overflowY: 'scroll' }}>
             <BrowserRouter forceRefresh>
-                <TopNav />
+                <TopNav {...props}/>
                 <WarehouseNav className="mt-5" />
                 <Switch>
                     <Route exact path="/warehouse/product-list">

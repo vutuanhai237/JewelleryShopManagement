@@ -50,3 +50,11 @@ export const CUSTOMER_GET_ALL = "CUSTOMER_GET_ALL";
 export const GLOBAL_CHANGE = "GLOBAL_CHANGE";
 export const FETCH_CURRENT_ACCOUNT = "FETCH_CURRENT_ACCOUNT";
 export const GLOBAL_LOGOUT = "GLOBAL_LOGOUT";
+
+export const THE_LOAI_SAN_PHAM = [
+    "Dây chuyền",
+    "Nhẫn",
+    "Vòng tay",
+    "Đá quý",
+    "Bông tai"
+]

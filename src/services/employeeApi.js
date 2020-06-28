@@ -20,6 +20,11 @@ export function fetchEmployees(filter) {
                 console.log(res.data.ds_nhanvien);
             })
             .catch(err => {
+                if(err.response && err.response.status === 401){
+                    alert("Bạn không có quyền truy cập trang này!");
+                    window.location.href = "/";
+                    return;
+                }
                 console.log(err);
             });
     }
@@ -73,26 +78,27 @@ export function editEmployee(employee, employeeId) {
     return dispatch => {
         const config = {
             headers: {
-                'content-type': 'multipart/form-data',
+                //'content-type': 'multipart/form-data',
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
         }
         if (!employee.ho_ten)
             return;
-        var fd = new FormData();
-        fd.append("ho_ten", employee.ho_ten);
-        fd.append("cmnd", employee.cmnd);
-        fd.append("sdt", employee.sdt);
-        fd.append("ngay_sinh", employee.ngay_sinh);
-        fd.append("gioi_tinh", employee.gioi_tinh);
-        fd.append("luong", employee.luong);
-        fd.append("dia_chi", employee.dia_chi);
-        // fd.append("ten_tk", employee.ten_tk);
-        // fd.append("mat_khau", employee.mat_khau);
-        // fd.append("loai_tk", employee.loai_tk);
-        // fd.append("anh_dai_dien", employee.anh_dai_dien);
 
-        axios.put(`http://${HOST}:${PORT}/nhanvien/capnhat/${employeeId}`, fd, config)
+        // var fd = new FormData();
+        // fd.append("ho_ten", employee.ho_ten);
+        // fd.append("cmnd", employee.cmnd);
+        // fd.append("sdt", employee.sdt);
+        // fd.append("ngay_sinh", employee.ngay_sinh);
+        // fd.append("gioi_tinh", employee.gioi_tinh);
+        // //fd.append("luong", employee.luong);
+        // fd.append("dia_chi", employee.dia_chi ?? "");
+        // // fd.append("ten_tk", employee.ten_tk);
+        // // fd.append("mat_khau", employee.mat_khau);
+        // // fd.append("loai_tk", employee.loai_tk);
+        // // fd.append("anh_dai_dien", employee.anh_dai_dien);
+
+        axios.put(`http://${HOST}:${PORT}/nhanvien/capnhat/${employeeId}`, employee, config)
             .then(response => {
                 alert("Cập nhật thông tin nhân viên thành công");
                 dispatch(editEmployeeSuccess());
@@ -106,6 +112,8 @@ export function editEmployee(employee, employeeId) {
 
 export function deleteEmployee(eid) {
     return dispatch => {
+        if (!window.confirm("Bạn thật sự muốn xóa nhân viên này?"))
+            return;
         const config = {
             headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`

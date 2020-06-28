@@ -26,7 +26,11 @@ export function fetchProducts(filter) {
                 dispatch(fetchProductListSuccess(res.data.ds_sanpham, res.data.total_count));
             })
             .catch(err => {
-                alert(err.message);
+                if (err.response && err.response.status === 401) {
+                    alert("Bạn không có quyền truy cập trang này!");
+                    window.location.href = "/";
+                    return;
+                }
                 console.log(err);
             });
 
@@ -36,6 +40,8 @@ export function fetchProducts(filter) {
 
 export function deleteProduct(pid) {
     return dispatch => {
+        if (!window.confirm("Bạn thật sự muốn xóa sản phẩm này?"))
+            return;
         const config = {
             headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`

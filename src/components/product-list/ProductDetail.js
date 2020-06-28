@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Image, ListGroup, ListGroupItem, Button} from "react-bootstrap";
+import { Form, Image, ListGroup, ListGroupItem, Button } from "react-bootstrap";
 import EditProductPopup from "./EditProductPopup";
 
 const ProductDetail = (props) => {
@@ -22,7 +22,7 @@ const ProductDetail = (props) => {
         <div>
             <div className="pt-2 customer-form" style={{ maxHeight: "unset" }}>
                 <h5 className="font-weight-bold mt-2">Chi tiết sản phẩm</h5>
-                <Image fluid src={anh_dai_dien} alt="image" className="my-4"/>
+                <Image fluid src={anh_dai_dien} alt="image" className="my-4" />
                 <ListGroup className="list-group-flush">
                     <ListGroupItem className="px-0">
                         Tên sản phẩm:<br />
@@ -53,7 +53,10 @@ const ProductDetail = (props) => {
                         <span className="font-weight-bold">{khoi_luong}</span>
                     </ListGroupItem>
                 </ListGroup>
-                <Button onClick={props.onEdit}>Sửa sản phẩm</Button>
+                <div className="text-center w-100 py-3">
+                    <Button onClick={props.onEdit}>Sửa sản phẩm</Button>
+                </div>
+
             </div>
         </div >
     );

@@ -142,6 +142,8 @@ class LoginForm extends React.Component {
                             <a href="/register">Đăng ký</a>
                             <span className="p-2">|</span>
                             <a href="/forgotpass">Quên mật khẩu</a>
+                            <span className="p-2">|</span>
+                            <a href="/">Trang chủ</a>
                         </div>
                     </Form>
                 </div>

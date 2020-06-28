@@ -31,20 +31,11 @@ function App() {
         <Route exact path="/search">
           <Search keyword={query.get('keyword')} />
         </Route>
-        <Route exact path="/login">
-          <Login />
-        </Route>
-        <Route exact path="/register">
-          <Register />
-        </Route>
-        <Route exact path="/employee">
-          <Employee />
-        </Route>
-        <Route exact path="/employee/customer">
-          <Customer />
-        </Route>
-        <Route path="/warehouse" component={Warehouse}/>
-        <Route path="/people" component={People}/>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        <Route path="/employee" component={Employee} />
+        <Route path="/warehouse" component={Warehouse} />
+        <Route path="/people" component={People} />
       </Switch>
       <div className="App">
       </div>

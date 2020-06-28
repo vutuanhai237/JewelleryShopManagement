@@ -1,12 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button, Col, Row, FormLabel, Image, FormGroup, Form, FormControl } from 'react-bootstrap';
+import { THE_LOAI_SAN_PHAM } from '../../constants';
 
-const opt = [
-    "aaaaaa",
-    "bbbbbb",
-    "cccccc",
-]
 
 class AddProductPopup extends React.Component {
     constructor(props) {
@@ -85,7 +81,7 @@ class AddProductPopup extends React.Component {
                                     <select required className="form-control" value={this.state.loai_sp} name="loai_sp" onChange={this.handleChange} >
                                         <option value="">Chọn loại sản phẩm</option>
                                         {
-                                            opt.map(item => {
+                                            THE_LOAI_SAN_PHAM.map(item => {
                                                 return <option key={item} value={item}>{item}</option>
                                             })
                                         }
@@ -99,17 +95,17 @@ class AddProductPopup extends React.Component {
                                     <FormLabel>Giá nhập</FormLabel>
                                     <FormControl required type="number" value={this.state.gia_nhap} name="gia_nhap" onChange={this.handleChange} />
                                 </FormGroup>
-                                <FormGroup controlId="product-weight">
+                                <FormGroup controlId="product-export-price">
                                     <FormLabel>Giá bán</FormLabel>
                                     <FormControl required type="number" value={this.state.gia_ban} name="gia_ban" onChange={this.handleChange} />
                                 </FormGroup>
-                                <FormGroup controlId="product-export-price">
+                                <FormGroup controlId="product-weight">
                                     <FormLabel>Khối lượng</FormLabel>
-                                    <FormControl required type="number" value={this.state.khoi_luong} name="khoi_luong" onChange={this.handleChange} />
+                                    <FormControl type="number" value={this.state.khoi_luong} name="khoi_luong" onChange={this.handleChange} />
                                 </FormGroup>
                                 <FormGroup controlId="product-standard">
                                     <FormLabel>Tiêu chuẩn</FormLabel>
-                                    <FormControl required type="text" value={this.state.tieu_chuan} name="tieu_chuan" onChange={this.handleChange} />
+                                    <FormControl type="text" value={this.state.tieu_chuan} name="tieu_chuan" onChange={this.handleChange} />
                                 </FormGroup>
                             </Col>
 

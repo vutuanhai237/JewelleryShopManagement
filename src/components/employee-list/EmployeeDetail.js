@@ -12,7 +12,7 @@ class EmployeeDetail extends React.Component {
         }
     }
 
-    componentDidMount() {
+    UNSAFE_componentWillReceiveProps() {
         if (this.props.item)
             getEmployeeAvatar(this.props.item.tk_id).then(
                 res => {
@@ -68,10 +68,10 @@ class EmployeeDetail extends React.Component {
                             CMND: {" "}
                             <span className="font-weight-bold">{cmnd}</span>
                         </ListGroupItem>
-                        <ListGroupItem className="px-0">
+                        {/* <ListGroupItem className="px-0">
                             Lương: {" "}
                             <span className="font-weight-bold">{luong}{" VND"}</span>
-                        </ListGroupItem>
+                        </ListGroupItem> */}
                         <ListGroupItem className="px-0">
                             Số điện thoại: {" "}
                             <span className="font-weight-bold">{sdt}</span>
@@ -81,7 +81,10 @@ class EmployeeDetail extends React.Component {
                             <span className="font-weight-bold">{dia_chi}</span>
                         </ListGroupItem>
                     </ListGroup>
-                    <Button onClick={this.props.onEdit}>Sửa thông tin</Button>
+                    <div className="text-center w-100 py-4">
+                        <Button onClick={this.props.onEdit}>Sửa thông tin</Button>
+                    </div>
+
                 </div>
             </div >
         );
