@@ -108,8 +108,9 @@ export function editProduct(product, productId) {
         fd.append("gia_nhap", product.gia_nhap);
         fd.append("tieu_chuan", product.tieu_chuan);
         fd.append("khoi_luong", product.khoi_luong);
-        fd.append("nhacc_id", product.nhacc_id);
-        fd.append("anh_dai_dien", product.anh_dai_dien);
+        //fd.append("nhacc_id", product.nhacc_id);
+        if (product.anh_dai_dien)
+            fd.append("anh_dai_dien", product.anh_dai_dien);
 
         axios.put(`https://${HOST}:${PORT}/sanpham/capnhat/${productId}`, fd, config)
             .then(response => {
