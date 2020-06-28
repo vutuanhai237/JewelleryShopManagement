@@ -1,13 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal, Button, Col, Row, FormLabel, Image, FormGroup, Form, FormControl } from 'react-bootstrap';
+import { Modal, Button, Col, Row, FormLabel, FormGroup, Form, FormControl } from 'react-bootstrap';
 import moment from 'moment';
 
-const opt = [
-    "aaaaaa",
-    "bbbbbb",
-    "cccccc",
-]
 
 class EditEmployeePopup extends React.Component {
     constructor(props) {

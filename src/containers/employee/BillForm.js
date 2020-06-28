@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Form, Col, Row, DropdownButton, Dropdown, ButtonGroup } from "react-bootstrap";
-import EmployeeCatNav from "./EmployeeCatNav"
 import DeliveryForm from "../../components/bill/DeliveryForm"
 import CustomerForm from "../../components/bill/CustomerForm"
 import ItemList from "../../components/bill/ItemList"

@@ -9,7 +9,6 @@ import EmployeeList from "../../components/employee-list/EmployeeList";
 import EmployeeDetail from "../../components/employee-list/EmployeeDetail";
 import Pagination from "../../components/Pagination";
 import AddEmployeePopup from "../../components/employee-list/AddEmployeePopup";
-import { editProduct } from "../../services/productApi";
 import EditEmployeePopup from "../../components/employee-list/EditEmployeePopup";
 
 const ITEMS_PER_PAGE = 5;
@@ -73,20 +72,15 @@ class Employees extends React.Component {
             changed
         } = this.props;
 
-        const filter = createFilter({
-            search,
-            page,
-            itemPerPage: ITEMS_PER_PAGE
-        });
 
-        if(changed) {
+        if (changed) {
             history.push({
                 pathname: "/people/employee-list",
                 search: search ? `?q=${search}&page=1` : `?page=1`,
             })
         }
 
-        if(employees && employees.length > 0 && !selected) {
+        if (employees && employees.length > 0 && !selected) {
             changeSelectedEmployee(employees[0]);
         }
 
@@ -123,7 +117,7 @@ class Employees extends React.Component {
                                         }} />
                                     </Col>
                                     <Col sm={4} xs={12}>
-                                        <EmployeeDetail onEdit={() => this.showEditEmployeePopup(true)} item={selected ?? employees[0]}  />
+                                        <EmployeeDetail onEdit={() => this.showEditEmployeePopup(true)} item={selected ?? employees[0]} />
                                     </Col>
                                 </Row>
                             </>

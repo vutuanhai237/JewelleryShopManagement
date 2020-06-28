@@ -1,12 +1,10 @@
 import React from "react";
-import { Form, Image, ListGroup, ListGroupItem, Button } from "react-bootstrap";
-import EditProductPopup from "./EditProductPopup";
+import { Image, ListGroup, ListGroupItem, Button } from "react-bootstrap";
 
 const ProductDetail = (props) => {
     if (!props.item)
         return null;
     const {
-        idsp,
         ten_sp,
         loai_sp,
         so_luong,
@@ -15,8 +13,6 @@ const ProductDetail = (props) => {
         anh_dai_dien,
         khoi_luong,
         tieu_chuan,
-        ghi_chu,
-        nhacc_id
     } = props.item;
     return (
         <div>

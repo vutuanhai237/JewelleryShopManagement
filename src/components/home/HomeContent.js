@@ -14,6 +14,8 @@ class HomeContent extends Component {
                         <HotProductList/>
                         <br />
                         <PopularProductList/>
+                        <h4>Giá vàng hiện tại</h4>
+                        <iframe title="Bang gia vang" className="w-100 mh-100" height="400px" frameBorder="0" src="https://tygia.com/api.php?cols=1&title=0&chart=1&gold=1&rate=0&expand=0&color=FFFFFF&titlecolor=333333&nganhang=VIETCOM&fontsize=80&change=1&css=%23SJC_N_ng{display:%20table-row%20!important;}#amp=1"/>
                     </Container>
                 </div>
             </>
