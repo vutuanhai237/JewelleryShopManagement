@@ -12,25 +12,25 @@ const PeopleNav = (props) => {
         {
             id: 0,
             img: IconList,
-            label: 'Danh sách nhân viên',
+            label: 'Nhân viên',
             href: "/people/employee-list",
         },
         {
             id: 1,
             img: Attendance,
-            label: 'Điểm danh nhân viên',
+            label: 'Điểm danh NV',
             href: "/people/dd",
         },
         {
             id: 2,
             img: Customer,
-            label: 'Danh sách khách hàng',
+            label: 'Khách hàng',
             href: "/employee/customer",
         },
         {
             id: 3,
             img: CustomerSupport,
-            label: 'Chăm sóc khách hàng',
+            label: 'CSKH',
             href: "/people/customer-care",
         },
 

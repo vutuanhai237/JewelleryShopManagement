@@ -11,7 +11,7 @@ export function fetchEmployees(filter) {
                 Authorization: `Bearer ${sessionStorage.getItem('token')}`
             },
         }
-        axios.get(`http://${HOST}:${PORT}/nhanvien/search`, {
+        axios.get(`https://${HOST}:${PORT}/nhanvien/search`, {
             ...config,
             params: filter,
         })
@@ -36,7 +36,7 @@ export function getEmployeeAvatar(employeeId) {
             Authorization: `Bearer ${sessionStorage.getItem('token')}`
         },
     }
-    return axios.get(`http://${HOST}:${PORT}/taikhoan/getbyid/${employeeId}`, config)
+    return axios.get(`https://${HOST}:${PORT}/taikhoan/getbyid/${employeeId}`, config)
 }
 
 export function addEmployee(employee) {
@@ -62,7 +62,7 @@ export function addEmployee(employee) {
         fd.append("luong", employee.luong);
         fd.append("dia_chi", employee.dia_chi);
 
-        axios.post(`http://${HOST}:${PORT}/nhanvien/tao`, fd, config)
+        axios.post(`https://${HOST}:${PORT}/nhanvien/tao`, fd, config)
             .then(response => {
                 alert("Thêm nhân viên mới thành công");
                 dispatch(addEmployeeSuccess());
@@ -98,7 +98,7 @@ export function editEmployee(employee, employeeId) {
         // // fd.append("loai_tk", employee.loai_tk);
         // // fd.append("anh_dai_dien", employee.anh_dai_dien);
 
-        axios.put(`http://${HOST}:${PORT}/nhanvien/capnhat/${employeeId}`, employee, config)
+        axios.put(`https://${HOST}:${PORT}/nhanvien/capnhat/${employeeId}`, employee, config)
             .then(response => {
                 alert("Cập nhật thông tin nhân viên thành công");
                 dispatch(editEmployeeSuccess());
@@ -119,7 +119,7 @@ export function deleteEmployee(eid) {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
         }
-        axios.delete(`http://${HOST}:${PORT}/nhanvien/xoa/${eid}`, config)
+        axios.delete(`https://${HOST}:${PORT}/nhanvien/xoa/${eid}`, config)
             .then(response => {
                 alert("Xóa nhân viên thành công");
                 dispatch(deleteEmployeeSuccess());

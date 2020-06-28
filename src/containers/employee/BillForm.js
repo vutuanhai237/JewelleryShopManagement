@@ -37,7 +37,7 @@ class BillForm extends React.Component {
         var data = '';
         var config = {
             method: 'get',
-            url: `http://${HOST}:${PORT}/free/sanpham/search?loai_sp=&ten_sp=&from=0&so_luong=1000`,
+            url: `https://${HOST}:${PORT}/free/sanpham/search?loai_sp=&ten_sp=&from=0&so_luong=1000`,
             headers: {},
             data: data
         };

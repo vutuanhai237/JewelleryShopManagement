@@ -4,6 +4,7 @@ import "./form.scss";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import axios from 'axios'
+import { PORT, HOST } from "../../constants";
 class PurchaseForm extends React.Component {
     constructor(props) {
         super(props);
@@ -42,7 +43,7 @@ class PurchaseForm extends React.Component {
         });
         var config = {
             method: 'post',
-            url: 'http://chvbdq.herokuapp.com:80/phieubanhang/tao',
+            url: `https://${HOST}:${PORT}/phieubanhang/tao`,
             headers: {
                 'Authorization': 'Bearer ' + sessionStorage.getItem("token"),
                 'Content-Type': 'application/json'

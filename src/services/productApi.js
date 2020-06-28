@@ -18,7 +18,7 @@ export function fetchProducts(filter) {
             },
         }
         dispatch(fetchProductListLoading());
-        axios.get(`http://${HOST}:${PORT}/free/sanpham/search`, {
+        axios.get(`https://${HOST}:${PORT}/free/sanpham/search`, {
             ...config,
             params: filter,
         })
@@ -47,7 +47,7 @@ export function deleteProduct(pid) {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
         }
-        axios.delete(`http://${HOST}:${PORT}/sanpham/xoa/${pid}`, config)
+        axios.delete(`https://${HOST}:${PORT}/sanpham/xoa/${pid}`, config)
             .then(response => {
                 alert("Xóa sản phẩm thành công");
                 dispatch(deleteProductSuccess());
@@ -80,7 +80,7 @@ export function addProduct(product) {
         fd.append("nhacc_id", product.nhacc_id);
         fd.append("anh_dai_dien", product.anh_dai_dien);
 
-        axios.post(`http://${HOST}:${PORT}/sanpham/tao`, fd, config)
+        axios.post(`https://${HOST}:${PORT}/sanpham/tao`, fd, config)
             .then(response => {
                 alert("Thêm sản phẩm thành công");
                 dispatch(addProductSuccess());
@@ -111,7 +111,7 @@ export function editProduct(product, productId) {
         fd.append("nhacc_id", product.nhacc_id);
         fd.append("anh_dai_dien", product.anh_dai_dien);
 
-        axios.put(`http://${HOST}:${PORT}/sanpham/capnhat/${productId}`, fd, config)
+        axios.put(`https://${HOST}:${PORT}/sanpham/capnhat/${productId}`, fd, config)
             .then(response => {
                 alert("Sửa sản phẩm thành công");
                 dispatch(editProductSuccess());
