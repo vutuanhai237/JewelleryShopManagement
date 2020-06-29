@@ -86,6 +86,15 @@ class TopNav extends Component {
 
 			})
 			.catch(error => {
+				if (error.response && error.response.status === 401) {
+					sessionStorage.removeItem("token");
+					sessionStorage.removeItem("id_nv");
+					sessionStorage.removeItem("ho_ten");
+					alert("Phiên đăng nhập đã hết hạn vui lòng đăng nhập lại!");
+					this.props.history.push({
+						pathname: "/login",
+					})
+				}
 				console.log(error);
 			});
 	}
@@ -106,15 +115,6 @@ class TopNav extends Component {
 					});
 			})
 			.catch(error => {
-				if (error.response && error.response.status === 401) {
-					sessionStorage.removeItem("token");
-					sessionStorage.removeItem("id_nv");
-					sessionStorage.removeItem("ho_ten");
-					alert("Phiên đăng nhập đã hết hạn vui lòng đăng nhập lại!");
-					this.props.history.push({
-						pathname: "/login",
-					})
-				}
 				console.log(error);
 			});
 	}
