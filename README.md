@@ -8,7 +8,9 @@
 
 - Username / Password: nhanviena / nhanviena, nhienvienc / nhienvanc.
 
-# 2. Source code: git clone https://github.com/vutuanhai237/QuanLyCuaHangVBDQ.git
+# 2. Source code: 
+
+- git clone https://github.com/vutuanhai237/QuanLyCuaHangVBDQ.git
 
 - Build: npm install (install all needed packages / libs)
 
