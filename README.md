@@ -1,3 +1,5 @@
+![version](https://img.shields.io/badge/version-v1.0.0-green.svg?style=plastic)
+
 Đồ án môn học Phát triển, vận hành và bảo trì phần mềm lớp SE109.K21 (nhóm 3) 
 
 ## Website Quản lý Cửa hàng vàng bạc đá quý 
